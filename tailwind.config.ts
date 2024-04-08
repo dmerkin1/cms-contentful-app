@@ -12,6 +12,16 @@ export default {
       fontFamily: {
         sans: ["var(--font-inter)"],
       },
+      colors: {
+        "custom-blue": "#323946",
+        "hover-blue": "#3ab1f1",
+        "bottom-footer-bar": "#282e3a",
+      },
+    },
+  },
+  variants: {
+    extend: {
+      textColor: ["hover"],
     },
   },
   future: {

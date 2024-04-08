@@ -4,7 +4,7 @@ import { draftMode } from "next/headers";
 import MoreStories from "../../more-stories";
 import Avatar from "../../avatar";
 import Date from "../../date";
-import CoverImage from "../../cover-image";
+import FeaturedImage from "../../../lib/featured-image";
 
 import { Markdown } from "@/lib/markdown";
 import { getAllPosts, getPostAndMorePosts } from "@/lib/api";
@@ -43,7 +43,13 @@ export default async function PostPage({
           )}
         </div>
         <div className="mb-8 sm:mx-0 md:mb-16">
-          <CoverImage title={post.title} alt={post.title} url={post.coverImage.url} />
+          <FeaturedImage
+            title={post.title}
+            url={post.coverImage.url}
+            src={post.coverImage.src}
+            alt={`Cover Image for ${post.title}`}
+            overlayEnabled={post.coverImage.overlayEnabled}
+          />
         </div>
         <div className="mx-auto max-w-2xl">
           <div className="mb-6 block md:hidden">

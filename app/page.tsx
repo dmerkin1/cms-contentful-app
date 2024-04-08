@@ -24,8 +24,8 @@ function HeroPost({
   slug: string;
 }) {
   return (
-    <section>
-      <div className="mb-8 md:mb-16 pl-0">
+    <section className="relative w-full">
+      <div className="mb-8 md:mb-16 pl-0 relative w-full">
         <FeaturedImage
           title={title}
           url={coverImage.url}
