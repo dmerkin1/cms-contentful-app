@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { EXAMPLE_PATH, CMS_NAME } from "@/lib/constants";
+import { CMS_NAME } from "@/lib/constants";
 import Link from "next/link";
 
 export const metadata = {
@@ -16,23 +16,29 @@ const inter = Inter({
 
 function Header() {
   return (
-    <header className="bg-accent-1 border-b border-accent-2">
+    <header className="text-white bg-accent-1 border-b border-accent-2 sticky top-0 z-10 bg-custom-blue">
       <div className="container mx-auto px-5">
         <div className="flex justify-between items-center py-4">
           <Link href="/">
-            <h1 className="text-4xl font-bold tracking-tighter leading-tight">
-              CMS-CONTENTFUL-APP
+            <h1 className="text-4xl font-bold tracking-tighter leading-tight hover:text-hover-blue">
+              My Blog
             </h1>
           </Link>
           <nav>
             <ul className="flex space-x-4">
               <li>
-                <Link href="/" className="hover:underline">
+                <Link
+                  href="/"
+                  className="hover:underline hover:text-hover-blue"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:underline">
+                <Link
+                  href="/blog"
+                  className="hover:underline hover:text-hover-blue"
+                >
                   Blog
                 </Link>
               </li>
@@ -46,27 +52,60 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="bg-accent-1 border-t border-accent-2">
+    <footer className="text-white bg-accent-1 border-t border-accent-2 bg-custom-blue">
       <div className="container mx-auto px-5">
-        <div className="py-28 flex flex-col lg:flex-row items-center">
-          <h3 className="text-4xl lg:text-5xl font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">
-            Built with Next.js.
-          </h3>
-          <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
-            <a
-              href="https://nextjs.org/docs"
-              className="mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0"
-            >
-              Read Documentation
-            </a>
-            <a
-              href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
-              className="mx-3 font-bold hover:underline"
-            >
-              View on GitHub
-            </a>
+        <div className="py-10 flex flex-col lg:flex-row items-center lg:justify-center">
+          {/* Welcome Message */}
+          <div className="lg:w-1/3 mb-6 lg:mb-0 text-center border-b lg:border-b-0 lg:border-r border-accent-2">
+            <h4 className="text-lg lg:text-lg font-semibold tracking-tighter leading-tight pb-2">
+              Welcome to our premier blogging platform, dedicated to delivering
+              content that combines quality, reliability, and compliance!
+            </h4>
+          </div>
+
+          {/* Follow Us */}
+          <div className="lg:w-1/3 mb-6 lg:mb-0 text-center border-b lg:border-b-0 lg:border-r border-accent-2">
+            <h4 className="text-lg font-semibold pb-2">Follow Us:</h4>
+            <nav>
+              <ul className="flex flex-col space-y-2">
+                <li>
+                  <Link
+                    href="/"
+                    className="hover:underline hover:text-hover-blue"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/blog"
+                    className="hover:underline hover:text-hover-blue"
+                  >
+                    Blog
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          {/* Contact Info */}
+          <div className="lg:w-1/3 mb-6 lg:mb-0 text-center">
+            <h4 className="text-lg lg:text-lg font-semibold pb-2">
+              Contact info
+            </h4>
+            <div>
+              <p>(123) 456-78910</p>
+              <p>info@demolink.org</p>
+              <p>267 Park Avenue</p>
+              <p>New York, NY 90210</p>
+            </div>
           </div>
         </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="flex justify-center items-center py-4 border-t bg-bottom-footer-bar">
+        <p className="text-sm">&copy; {new Date().getFullYear()} My Blog </p>
       </div>
     </footer>
   );
