@@ -68,7 +68,7 @@ function extractPostEntries(fetchResponse: any): any[] {
 export async function getPreviewPostBySlug(slug: string | null): Promise<any> {
   const entry = await fetchGraphQL(
     `query {
-      postCollection(where: { slug: "${slug}" }, preview: true, limit: 1) {
+      postCollection(where: { slug: "${slug}" }, preview: true, limit: 5) {
         items {
           ${POST_GRAPHQL_FIELDS}
         }
@@ -92,7 +92,6 @@ export async function getAllPosts(isDraftMode: boolean): Promise<any[]> {
     }`,
     isDraftMode
   );
-  console.log("Entries", JSON.stringify(entries, null, 2));
   return extractPostEntries(entries);
 }
 
