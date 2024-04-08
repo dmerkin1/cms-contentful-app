@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { EXAMPLE_PATH, CMS_NAME } from "@/lib/constants";
+import Link from "next/link";
 
 export const metadata = {
   title: `Next.js and ${CMS_NAME} Example`,
@@ -12,6 +13,36 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
 });
+
+function Header() {
+  return (
+    <header className="bg-accent-1 border-b border-accent-2">
+      <div className="container mx-auto px-5">
+        <div className="flex justify-between items-center py-4">
+          <Link href="/">
+            <h1 className="text-4xl font-bold tracking-tighter leading-tight">
+              CMS-CONTENTFUL-APP
+            </h1>
+          </Link>
+          <nav>
+            <ul className="flex space-x-4">
+              <li>
+                <Link href="/" className="hover:underline">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="hover:underline">
+                  Blog
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+  );
+}
 
 function Footer() {
   return (
@@ -50,6 +81,7 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body>
         <section className="min-h-screen">
+          <Header />
           <main>{children}</main>
           <Footer />
         </section>

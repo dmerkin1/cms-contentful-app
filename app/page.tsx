@@ -2,39 +2,11 @@ import Link from "next/link";
 import { draftMode } from "next/headers";
 
 import Date from "./date";
-import CoverImage from "./cover-image";
 import Avatar from "./avatar";
 import MoreStories from "./more-stories";
 
 import { getAllPosts } from "@/lib/api";
-import { CMS_NAME, CMS_URL } from "@/lib/constants";
-
-function Intro() {
-  return (
-    <section className="flex-col md:flex-row flex items-center md:justify-between mt-16 mb-16 md:mb-12">
-      <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
-        Blog.
-      </h1>
-      <h2 className="text-center md:text-left text-lg mt-5 md:pl-8">
-        A statically generated blog example using{" "}
-        <a
-          href="https://nextjs.org/"
-          className="underline hover:text-success duration-200 transition-colors"
-        >
-          Next.js
-        </a>{" "}
-        and{" "}
-        <a
-          href={CMS_URL}
-          className="underline hover:text-success duration-200 transition-colors"
-        >
-          {CMS_NAME}
-        </a>
-        .
-      </h2>
-    </section>
-  );
-}
+import FeaturedImage from "@/lib/featured-image";
 
 function HeroPost({
   title,
@@ -53,8 +25,14 @@ function HeroPost({
 }) {
   return (
     <section>
-      <div className="mb-8 md:mb-16">
-        <CoverImage title={title} slug={slug} url={coverImage.url} />
+      <div className="mb-8 md:mb-16 pl-0">
+        <FeaturedImage
+          title={title}
+          url={coverImage.url}
+          src={coverImage.src}
+          alt={`Cover Image for ${title}`}
+          overlayEnabled={coverImage.overlayEnabled}
+        />
       </div>
       <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
         <div>
@@ -84,7 +62,6 @@ export default async function Page() {
 
   return (
     <div className="container mx-auto px-5">
-      <Intro />
       {heroPost && (
         <HeroPost
           title={heroPost.title}

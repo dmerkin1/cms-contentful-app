@@ -7,10 +7,12 @@ function cn(...classes: any[]) {
 
 export default function CoverImage({
   title,
+  alt,
   url,
   slug,
 }: {
   title: string;
+  alt: string;
   url: string;
   slug?: string;
 }) {
@@ -20,7 +22,7 @@ export default function CoverImage({
       priority
       width={2000}
       height={1000}
-      className={cn("shadow-small", {
+      className={cn("shadow-small w-full", {
         "hover:shadow-medium transition-shadow duration-200": slug,
       })}
       src={url}
