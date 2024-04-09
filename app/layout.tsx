@@ -4,7 +4,7 @@ import { CMS_NAME } from "@/lib/constants";
 import Link from "next/link";
 
 export const metadata = {
-  title: `Next.js and ${CMS_NAME} Example`,
+  title: `My Blog`,
   description: `This is a blog built with Next.js and ${CMS_NAME}.`,
 };
 
@@ -56,7 +56,7 @@ function Footer() {
       <div className="container mx-auto px-5">
         <div className="py-10 flex flex-col lg:flex-row items-center lg:justify-center">
           {/* Welcome Message */}
-          <div className="lg:w-1/3 mb-6 lg:mb-0 text-center border-b lg:border-b-0 lg:border-r border-accent-2">
+          <div className="lg:w-1/3 mb-6 lg:mb-0 text-center ">
             <h4 className="text-lg lg:text-lg font-semibold tracking-tighter leading-tight pb-2">
               Welcome to our premier blogging platform, dedicated to delivering
               content that combines quality, reliability, and compliance!
@@ -64,7 +64,7 @@ function Footer() {
           </div>
 
           {/* Follow Us */}
-          <div className="lg:w-1/3 mb-6 lg:mb-0 text-center border-b lg:border-b-0 lg:border-r border-accent-2">
+          <div className="lg:w-1/3 mb-6 lg:mb-0 text-center ">
             <h4 className="text-lg font-semibold pb-2">Follow Us:</h4>
             <nav>
               <ul className="flex flex-col space-y-2">

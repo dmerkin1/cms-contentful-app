@@ -6,7 +6,7 @@ import { getAllPosts } from "@/lib/api";
 export default async function Page() {
   const { isEnabled } = draftMode();
   const allPosts = await getAllPosts(isEnabled);
-  const morePosts = allPosts.slice(1);
+  const morePosts = allPosts.slice(0, 11);
 
   return (
     <section className="container mx-auto">

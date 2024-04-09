@@ -19,7 +19,6 @@ export default function FeaturedImage({
           src={url}
           loader={contentfulLoader}
           alt={title}
-          priority
           height={500}
           width={1000}
           className="w-full h-full object-cover"
