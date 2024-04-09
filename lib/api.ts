@@ -26,6 +26,7 @@ const POST_GRAPHQL_FIELDS = `
       }
     }
   }
+  overlayEnabled
 `;
 
 async function fetchGraphQL(query: string, preview = false): Promise<any> {
@@ -150,4 +151,17 @@ export async function getAllTestimonials(): Promise<any[]> {
     }`
   );
   return entries?.data?.testimonialsCollection?.items;
+}
+
+export async function getBlogCategory(): Promise<any[]> {
+  const entries = await fetchGraphQL(
+    `query {
+      blogCategoryCollection {
+        items {
+          categoryName
+        }
+      }
+    }`
+  );
+  return entries?.data?.blogCategoryCollection?.items;
 }
