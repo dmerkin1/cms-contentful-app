@@ -16,6 +16,7 @@ export default {
         "custom-blue": "#323946",
         "hover-blue": "#3ab1f1",
         "bottom-footer-bar": "#282e3a",
+        "gray-section": "#f2f2f5"
       },
     },
   },
