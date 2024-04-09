@@ -46,11 +46,11 @@ function PostPreview({
 
 export default function MoreStories({ morePosts }: { morePosts: any[] }) {
   return (
-    <section className="p-5">
+    <section className="px-5">
       <h2 className="my-8 text-6xl md:text-7xl font-bold tracking-tighter leading-tight text-center">
         More Stories
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
+      <div className="grid grid-cols-1 md:grid-cols-3 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-5">
         {/* Display the most recent 3 posts */}
         {[...morePosts]
           .sort(

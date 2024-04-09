@@ -4,7 +4,7 @@ import { draftMode } from "next/headers";
 import Date from "./date";
 import Avatar from "./avatar";
 import MoreStories from "./more-stories";
-import Testimonials from "./testimonials";
+import Testimonials from "../lib/testimonials";
 
 import { getAllPosts } from "@/lib/api";
 import FeaturedImage from "@/lib/featured-image";
@@ -75,8 +75,7 @@ export default async function Page() {
           excerpt={heroPost.excerpt}
         />
       )}
-      <MoreStories morePosts={morePosts} />
-      <div className="flex flex-col sm:flex-row items-center justify-center bg-gray-section p-10 w-full">
+      <div className="relative flex flex-col sm:flex-row items-center justify-center bg-gray-section p-10 w-full">
         <img
           src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Image of a brain"
@@ -92,7 +91,8 @@ export default async function Page() {
           </p>
         </div>
       </div>
-      <Testimonials/>
+      <MoreStories morePosts={morePosts} />
+      <Testimonials />
     </div>
   );
 }
