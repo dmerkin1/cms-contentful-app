@@ -27,6 +27,11 @@ const POST_GRAPHQL_FIELDS = `
     }
   }
   overlayEnabled
+  category {
+    ... on BlogCategory {
+      categoryName
+    }
+  }
 `;
 
 async function fetchGraphQL(query: string, preview = false): Promise<any> {
@@ -139,29 +144,47 @@ export async function getPostAndMorePosts(
 export async function getAllTestimonials(): Promise<any[]> {
   const entries = await fetchGraphQL(
     `query {
-      testimonialsCollection {
+      testimonialCollection {
         items {
-          name
-          content
-          image {
-            url
+          name 
+          location
+          testimonial {
+            json
+          }
+          product
+        }
+      }
+    }`
+  );
+  return entries?.data?.testimonialCollection?.items;
+}
+
+export async function getFooterText(): Promise<any> {
+  const entries = await fetchGraphQL(
+    `query {
+      footerCollection {
+        items {
+          maxWidth
+          content {
+            json
           }
         }
       }
     }`
   );
-  return entries?.data?.testimonialsCollection?.items;
+  return entries?.data?.footerCollection?.items[0];
 }
 
-export async function getBlogCategory(): Promise<any[]> {
+export async function getLinks(): Promise<any> {
   const entries = await fetchGraphQL(
-    `query {
-      blogCategoryCollection {
+    `query { 
+      linkCollection {
         items {
-          categoryName
+          href
+          label
         }
       }
     }`
   );
-  return entries?.data?.blogCategoryCollection?.items;
+  return entries?.data?.linkCollection?.items;
 }
