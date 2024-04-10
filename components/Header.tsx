@@ -11,7 +11,7 @@ export default async function Header() {
         <div className="flex justify-between items-center py-4">
           <Link href="/">
             <h1 className="text-4xl font-bold tracking-tighter leading-tight hover:text-hover-blue">
-              My Blog
+              Finance
             </h1>
           </Link>
           <nav>

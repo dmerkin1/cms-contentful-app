@@ -28,7 +28,7 @@ export default async function Page() {
   };
 
   return (
-    <div className="flex flex-wrap justify-around">
+    <div className="flex flex-wrap justify-center">
       <h2 className="w-full text-center mb-8 text-6xl md:text-7xl font-bold tracking-tighter leading-tight m-5">
         Testimonials
       </h2>
@@ -36,14 +36,15 @@ export default async function Page() {
         testimonials.map((testimonial: Testimonial, index: number) => (
           <div
             key={index}
-            className="flex flex-col items-center bg-white shadow-md m-4 p-4 rounded-lg w-64"
+            className="flex flex-col items-center shadow-md m-4 p-4 rounded-lg"
+            style={{ width: "308.667px", marginRight: "66px" }}
           >
+            <div className="text-center text-gray-500 mb-5">
+              <em>{renderContent(testimonial.testimonial.json.content)}</em>
+            </div>
             <p className="font-bold">{testimonial.name}</p>
             <p className="text-center">{testimonial.location}</p>
-            <p className="text-center">{testimonial.product}</p>
-            <div className="text-center text-gray-500">
-              {renderContent(testimonial.testimonial.json.content)}
-            </div>
+            <p className="text-center text-gray-500">({testimonial.product})</p>
           </div>
         ))
       ) : (

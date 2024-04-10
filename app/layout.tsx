@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: `My Blog`,
+  title: `Finance`,
   description: `This is a blog built with Next.js and ${CMS_NAME}.`,
 };
 
