@@ -30,7 +30,7 @@ function PostPreview({
           url={coverImage.url}
         />
       </div>
-      <h3 className="text-3xl mb-3 leading-snug">
+      <h3 className="text-xl font-bold mb-3 leading-snug">
         <Link href={`/posts/${slug}`} className="hover:underline">
           {title}
         </Link>
@@ -38,7 +38,7 @@ function PostPreview({
       <div className="text-lg mb-4">
         <DateComponent dateString={date} />
       </div>
-      <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
+      <p className="text-lg leading-relaxed mb-4 text-gray-400">{excerpt}</p>
       {author && <Avatar name={author.name} picture={author.picture} />}
     </div>
   );
@@ -46,12 +46,11 @@ function PostPreview({
 
 export default function MoreStories({ morePosts }: { morePosts: any[] }) {
   return (
-    <section className="px-5">
-      <h2 className="my-8 text-6xl md:text-7xl font-bold tracking-tighter leading-tight text-center">
+    <section className="px-10">
+      <h2 className="my-8 text-5xl md:text-5xl font-bold tracking-tighter leading-tight text-center">
         More Stories
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-5">
-        {/* Display the most recent 3 posts */}
         {[...morePosts]
           .sort(
             (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()

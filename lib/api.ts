@@ -147,6 +147,9 @@ export async function getAllTestimonials(): Promise<any[]> {
       testimonialCollection {
         items {
           name 
+          image {
+            url
+          }
           location
           testimonial {
             json
@@ -187,4 +190,21 @@ export async function getLinks(): Promise<any> {
     }`
   );
   return entries?.data?.linkCollection?.items;
+}
+
+export async function getCards(): Promise<any> {
+  const entries = await fetchGraphQL(
+    `query {
+      cardCollection {
+        items {
+          title
+          subText
+          customIcon {
+            url
+          }
+        }
+      }
+    }`
+  );
+  return entries?.data?.cardCollection?.items;
 }

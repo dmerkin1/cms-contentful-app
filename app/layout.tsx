@@ -1,11 +1,11 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { CMS_NAME } from "@/lib/constants";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 export const metadata = {
-  title: `Finance`,
+  title: `FinPRO`,
   description: `This is a blog built with Next.js and ${CMS_NAME}.`,
 };
 
