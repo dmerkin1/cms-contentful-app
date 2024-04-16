@@ -1,37 +1,46 @@
 import { draftMode } from "next/headers";
+import Image from "next/image";
 import Card from "@/components/cards";
 
 import MoreStories from "./more-stories";
 import Testimonials from "../lib/testimonials";
 
-import { getAllPosts } from "@/lib/api";
+import { getAllPosts, getHeroImage } from "@/lib/api";
+import { contentfulLoader } from "@/lib/contentful-image";
 
 export default async function Page() {
   const { isEnabled } = draftMode();
   const allPosts = await getAllPosts(isEnabled);
   const morePosts = allPosts.slice(0, 3);
+  const heroImage = await getHeroImage();
+  console.log("heroImage", heroImage);
 
   return (
     <div className="mx-auto">
+      {heroImage && (
+        <div className="relative h-96 flex">
+          {heroImage?.image?.image?.url && (
+            <Image
+              loader={contentfulLoader}
+              priority
+              src={heroImage.image.image.url}
+              alt={heroImage.image.altText}
+              width={1000}
+              height={500}
+              className="object-cover w-1/2 h-full"
+            />
+          )}
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-center w-1/2 ml-auto p-4">
+            <h2 className="text-white text-4xl font-bold">
+              {heroImage?.headline}
+            </h2>
+            <p>{heroImage?.subText?.json?.content[0]?.content[0]?.value}</p>
+          </div>
+        </div>
+      )}
       <div className="flex flex-wrap justify-center">
         <Card />
       </div>
-      {/* <div className="relative flex flex-col sm:flex-row items-center justify-center bg-gray-section p-10 w-full">
-        <img
-          src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="Image of a brain"
-          className="w-full sm:w-1/3 h-64 mx-auto object-cover"
-        />
-        <div className="text-lg w-full sm:w-1/2 text-center mt-4 sm:mt-0">
-          <p>
-            This blog explores the intersection of technology and artificial
-            intelligence (AI). AI is a rapidly evolving field with the potential
-            advancements in AI, the possibilities seem limitless. From
-            self-driving cars to personalized medicine, AI is reshaping
-            industries and revolutionizing the way we live and work.
-          </p>
-        </div>
-      </div> */}
       <MoreStories morePosts={morePosts} />
       <Testimonials />
     </div>

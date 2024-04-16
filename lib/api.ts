@@ -208,3 +208,33 @@ export async function getCards(): Promise<any> {
   );
   return entries?.data?.cardCollection?.items;
 }
+
+export async function getHeroImage(): Promise<any> {
+  try {
+    const entries = await fetchGraphQL(
+      `query {
+        heroImageCollection {
+          items {
+            headline
+            darkenImage
+            subText {
+              json
+            }
+            image {
+              ... on ImageWithFocalPoint {
+                image {
+                  url
+                }
+                focalPoint
+                altText
+              }
+            }
+          }
+        }
+      }`
+    );
+    return entries?.data?.heroImageCollection?.items[0];
+  } catch (error) {
+    console.error("An error occurred while fetching the hero image:", error);
+  }
+}

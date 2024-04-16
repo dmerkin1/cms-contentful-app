@@ -15,10 +15,6 @@ const TopBar = () => {
         </div>
         <div className="flex space-x-10">
           <div className="flex flex-col items-start space-y-1">
-            <span
-              className="icon-[gala--clock]"
-              style={{ color: "#229dd1" }}
-            ></span>
             <div className="flex items-center space-x-1">
               {/* Icon */}
               <span className="font-bold">Mon - Sat: 9:00 - 18:00</span>
