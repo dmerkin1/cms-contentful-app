@@ -238,3 +238,22 @@ export async function getHeroImage(): Promise<any> {
     console.error("An error occurred while fetching the hero image:", error);
   }
 }
+
+export async function getLogo(): Promise<any> {
+  try {
+    const entries = await fetchGraphQL(
+      `query {
+        imageWithFocalPointCollection {
+          items {
+            image {
+              url
+            }
+          }
+        }
+      }`
+    );
+    return entries?.data?.imageWithFocalPointCollection?.items[0];
+  } catch (error) {
+    console.error("An error occurred while fetching the logo:", error);
+  }
+}

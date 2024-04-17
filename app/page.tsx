@@ -1,47 +1,62 @@
-import { draftMode } from "next/headers";
-import Image from "next/image";
+import ContentfulImage from "@/lib/contentful-image";
 import Card from "@/components/cards";
-
-import MoreStories from "./more-stories";
-import Testimonials from "../lib/testimonials";
-
-import { getAllPosts, getHeroImage } from "@/lib/api";
+import Testimonials from "@/components/testimonials";
+import Link from "next/link";
+import { getHeroImage } from "@/lib/api";
 import { contentfulLoader } from "@/lib/contentful-image";
 
 export default async function Page() {
-  const { isEnabled } = draftMode();
-  const allPosts = await getAllPosts(isEnabled);
-  const morePosts = allPosts.slice(0, 3);
   const heroImage = await getHeroImage();
-  console.log("heroImage", heroImage);
 
   return (
-    <div className="mx-auto">
+    <div className="relative">
       {heroImage && (
-        <div className="relative h-96 flex">
+        <div className="relative">
           {heroImage?.image?.image?.url && (
-            <Image
-              loader={contentfulLoader}
-              priority
-              src={heroImage.image.image.url}
-              alt={heroImage.image.altText}
-              width={1000}
-              height={500}
-              className="object-cover w-1/2 h-full"
-            />
+            <div className="w-full h-[600px]">
+              <ContentfulImage
+                loader={contentfulLoader}
+                priority
+                width={1000}
+                height={1000}
+                src={heroImage.image.image.url}
+                alt={heroImage.image.altText}
+                className="object-cover w-full h-full"
+              />
+            </div>
           )}
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-center w-1/2 ml-auto p-4">
-            <h2 className="text-white text-4xl font-bold">
-              {heroImage?.headline}
-            </h2>
-            <p>{heroImage?.subText?.json?.content[0]?.content[0]?.value}</p>
+          <div className="absolute inset-0 flex flex-col justify-center p-4 text-white md:pl-8">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+              <div className="md:w-1/2">
+                <div className="md:pl-40 md:pr-4">
+                  <h1 className="text-4xl md:text-5xl xl:text-6xl leading-[1] font-bold text-center md:text-left mb-5 max-w-screen-lg">
+                    {heroImage?.headline}
+                  </h1>
+                  <p className="text-lg md:text-xl font-light text-center md:text-left mb-10 max-w-screen-lg">
+                    {heroImage?.subText?.json?.content[0]?.content[0]?.value}
+                  </p>
+                  <div className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4 items-center">
+                    <Link href="/" passHref>
+                      <button className="bg-hover-blue hover:bg-white hover:text-hover-blue py-3 px-8 rounded transition duration-300 whitespace-nowrap">
+                        Our Services
+                      </button>
+                    </Link>
+                    <Link href="/" passHref>
+                      <button className="border-2 hover:bg-white hover:text-hover-blue border-white border-solid py-3 px-8 rounded transition duration-300 whitespace-nowrap">
+                        Purchase Now
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className="md:w-1/2 flex flex-col items-start gap-4 pt-4 md:pt-0"></div>
+            </div>
           </div>
         </div>
       )}
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center mt-10">
         <Card />
       </div>
-      <MoreStories morePosts={morePosts} />
       <Testimonials />
     </div>
   );
