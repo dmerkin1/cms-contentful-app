@@ -38,18 +38,17 @@ export default async function Header() {
   return (
     <>
       <TopBar />
-      <header className="text-white bg-accent-1 border-b border-accent-2 z-10 sticky top-0">
+      <header className="text-white bg-accent-1 border-accent-2 z-10 sticky top-0">
         <div className="bg-custom-blue" id="menuHeader">
           <div className="flex justify-between items-center px-4 py-4 md:px-20">
             <HamburgerMenu />
-            <nav
-              id="menu"
-              className="md:flex hidden md:w-auto relative"
-              style={{ overflowY: "visible" }}
-            >
-              <ul className="flex flex-row space-x-4 md:px-20 lg:px-36">
+            <nav id="menu" className="md:flex md:w-auto relative">
+              <ul className="flex flex-row space-x-4 lg:px-36">
                 {reorderedMenuLinks.map((link: any, index: number) => (
-                  <li key={index} className="relative group">
+                  <li
+                    key={index}
+                    className="relative group"
+                  >
                     <Link
                       href={link.href}
                       className="hover:text-hover-blue font-bold relative flex items-center px-2"
@@ -76,15 +75,15 @@ export default async function Header() {
                           </span>
                         )}
                     </Link>
-                    {link.subMenuCollection &&
+                    {/* {link.subMenuCollection &&
                       link.label !== "Home" &&
                       link.label !== "Contacts" && (
-                        <ul className="absolute top-full left-0 bg-white border border-gray-200 z-20 opacity-0 group-hover:opacity-100 h-0 group-hover:h-auto min-w-[268px] transition-all duration-600 font-light">
+                        <ul className="absolute mt-4 left-0 bg-white border border-gray-200 z-20 min-w-[268px] opacity-0 group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
                           {link.subMenuCollection.items.map(
                             (subLink: any, subIndex: number) => (
                               <li
                                 key={subIndex}
-                                className="font-light px-[18px] py-[12px] whitespace-nowrap border-b hover:bg-gray-100"
+                                className="font-light px-4 py-2 whitespace-nowrap border-b hover:bg-gray-100"
                               >
                                 <Link
                                   href={subLink.href}
@@ -96,7 +95,7 @@ export default async function Header() {
                             )
                           )}
                         </ul>
-                      )}
+                      )} */}
                   </li>
                 ))}
               </ul>

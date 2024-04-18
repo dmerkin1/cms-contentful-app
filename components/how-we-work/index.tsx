@@ -18,7 +18,7 @@ export default async function HowWeWork() {
                 width={400}
                 height={400}
                 alt={work.title}
-                className="rounded w-full md:w-auto max-w-full h-auto md:h-96"
+                className="rounded w-full md:w-auto max-w-full h-auto md:h-96 object-cover"
               />
             </div>
 

@@ -34,7 +34,7 @@ export default async function Page() {
                   <h1 className="text-4xl md:text-5xl xl:text-6xl leading-[1] font-bold text-center md:text-left mb-5 max-w-screen-lg">
                     {heroImage?.headline}
                   </h1>
-                  <p className="text-xl font-thin text-[18px] lg:text-[22px] lg:leading-[36px] mb-10">
+                  <p className="md:text-left text-center text-xl font-thin text-[18px] lg:text-[22px] lg:leading-[36px] mb-10">
                     {heroImage?.subText?.json?.content[0]?.content[0]?.value}
                   </p>
                   <div className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4 items-center">

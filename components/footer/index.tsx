@@ -32,9 +32,9 @@ export default async function Footer() {
   );
   return (
     <footer className="text-white bg-accent-1 border-t border-accent-2 bg-custom-blue font-light">
-      <div className="container mx-auto">
+      <div className="container lg:mx-auto md:ml-14 ">
         <div className="py-10 flex flex-col md:flex-row lg:flex-row items-center lg:justify-center flex-wrap text-center md:text-left">
-          <div className="lg:w-1/4 md:w-1/2 mb-6 lg:mb-0">
+          <div className="lg:w-1/4 md:w-1/2 mb-6 lg:mb-0 flex flex-col items-center md:items-start justify-center">
             <ContentfulImage
               src={logo?.image?.url}
               alt={logo?.image?.title}
@@ -42,7 +42,9 @@ export default async function Footer() {
               height={50}
               className="mb-5"
             />
-            <p className="offset-sm-top-34 pr-5">{footerText}</p>
+            <p className="offset-sm-top-34 pr-5 text-center md:text-left">
+              {footerText}
+            </p>
             <div className="w-full mt-[22px] flex items-center justify-center md:justify-start gap-[30px]">
               <em className="font-light">Follow Us:</em>
               <div className="flex gap-2">
@@ -90,13 +92,13 @@ export default async function Footer() {
           </div>
           <div className="lg:w-1/4 md:w-1/2 mb-6 lg:mb-0 pr-5">
             <div>
-              <h4 className="text-2xl font-semibold pb-5 align-top">
+              <h4 className="text-lg font-semibold pb-5 md:text-2xl">
                 Navigation
               </h4>
               <hr className="w-full sm:w-[315px] md:w-[275px] lg:w-[200px] xl:w-[200px] border-b-1 border-gray-500 pb-5"></hr>
             </div>
             <nav>
-              <div className="flex">
+              <div className="flex text-left">
                 <ul className="flex flex-col space-y-2 text-gray-500 pt-3">
                   {leftColumnLinks.map((link: any, index: number) => (
                     <li key={index}>
@@ -127,7 +129,7 @@ export default async function Footer() {
 
           <div className="lg:w-1/4 md:w-1/2 mb-6 lg:mb-0">
             <div>
-              <h4 className="text-2xl font-semibold pb-5 align-top">
+              <h4 className="text-lg font-semibold pb-5 md:text-2xl">
                 Contact Info
               </h4>
               <hr className="w-full sm:w-[315px] md:w-[275px] lg:w-[200px] xl:w-[200px] border-b-1 border-gray-500 pb-5"></hr>
@@ -199,7 +201,7 @@ export default async function Footer() {
                   <path d="M16.114-0.011c-6.559 0-12.114 5.587-12.114 12.204 0 6.93 6.439 14.017 10.77 18.998 0.017 0.020 0.717 0.797 1.579 0.797h0.076c0.863 0 1.558-0.777 1.575-0.797 4.064-4.672 10-12.377 10-18.998 0-6.618-4.333-12.204-11.886-12.204zM16.515 29.849c-0.035 0.035-0.086 0.074-0.131 0.107-0.046-0.032-0.096-0.072-0.133-0.107l-0.523-0.602c-4.106-4.71-9.729-11.161-9.729-17.055 0-5.532 4.632-10.205 10.114-10.205 6.829 0 9.886 5.125 9.886 10.205 0 4.474-3.192 10.416-9.485 17.657zM16.035 6.044c-3.313 0-6 2.686-6 6s2.687 6 6 6 6-2.687 6-6-2.686-6-6-6zM16.035 16.044c-2.206 0-4.046-1.838-4.046-4.044s1.794-4 4-4c2.207 0 4 1.794 4 4 0.001 2.206-1.747 4.044-3.954 4.044z"></path>
                 </svg>
                 <div className="hover:text-hover-blue transition-all duration-300 ease-in-out hover:cursor-pointer">
-                  <p className="font-bold">267 Park Avenue</p>
+                  <p className="font-bold text-left">267 Park Avenue</p>
                   <p className="font-light">New York, NY 90210</p>
                 </div>
               </div>
@@ -207,16 +209,18 @@ export default async function Footer() {
           </div>
           <div className="lg:w-1/4 md:w-1/2 mb-6 lg:mb-0">
             <div>
-              <h4 className="text-2xl font-semibold pb-5">Subscribe</h4>
+              <h4 className="text-lg font-semibold pb-5 md:text-2xl">
+                Subscribe
+              </h4>
               <hr className="w-full sm:w-[315px] md:w-[275px] lg:w-[200px] xl:w-[200px] border-b-1 border-gray-500 pb-5"></hr>
             </div>
 
             <div className="pt-3">
-              <p className="pb-2">Get latest updates and offers.</p>
+              <p className="pb-5 md:pb-2">Get latest updates and offers.</p>
               <input
                 type="email"
                 placeholder="E-mail"
-                className="w-1/2 px-4 py-3 rounded-tl-lg rounded-bl-lg"
+                className="md:w-1/2 px-4 py-3 rounded-tl-lg rounded-bl-lg w-2/3"
               />
               <button className="bg-hover-blue text-white px-4 py-3 rounded-tr-lg rounded-br-lg">
                 Send
