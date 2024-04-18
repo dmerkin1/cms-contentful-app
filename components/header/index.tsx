@@ -1,7 +1,8 @@
 import TopBar from "./top-bar";
 import Link from "next/link";
-import { getLinks } from "@/lib/api";
+import { getLinks, getLogo } from "@/lib/api";
 import HamburgerMenu from "./hamburger-menu";
+import ContentfulImage, { contentfulLoader } from "@/lib/contentful-image";
 
 interface LinkItem {
   href: string;
@@ -15,6 +16,7 @@ interface LinkItem {
 }
 
 export default async function Header() {
+  const logo = await getLogo();
   const linkData: LinkItem[] = await getLinks();
   const mainMenuLinks: LinkItem[] = linkData.filter(
     (link: LinkItem) =>
@@ -22,6 +24,7 @@ export default async function Header() {
       link.label === "Home" ||
       link.label === "Contacts"
   );
+
   const orderedLabels = [
     "Home",
     "About Us",
@@ -31,6 +34,7 @@ export default async function Header() {
     "Contacts",
     "Blocks",
   ];
+
   const reorderedMenuLinks = orderedLabels.map((label) =>
     mainMenuLinks.find((link) => link.label === label)
   );
@@ -39,16 +43,26 @@ export default async function Header() {
     <>
       <TopBar />
       <header className="text-white bg-accent-1 border-accent-2 z-10 sticky top-0">
-        <div className="bg-custom-blue" id="menuHeader">
+        <div className="md:bg-custom-blue bg-white" id="menuHeader">
           <div className="flex justify-between items-center px-4 py-4 md:px-20">
-            <HamburgerMenu />
-            <nav id="menu" className="md:flex md:w-auto relative">
-              <ul className="flex flex-row space-x-4 lg:px-36">
+            <div className="flex items-center md:hidden">
+              <HamburgerMenu />
+              <ContentfulImage
+                loader={contentfulLoader}
+                src={logo.image.url}
+                alt={logo.image.title}
+                width={150}
+                height={150}
+                className="ml-4"
+              />
+            </div>
+            <nav
+              id="menu"
+              className="md:flex md:w-auto relative text-hover-blue md:text-white"
+            >
+              <ul className="flex-row space-x-4 lg:px-36  md:flex">
                 {reorderedMenuLinks.map((link: any, index: number) => (
-                  <li
-                    key={index}
-                    className="relative group"
-                  >
+                  <li key={index} className="relative group">
                     <Link
                       href={link.href}
                       className="hover:text-hover-blue font-bold relative flex items-center px-2"
@@ -75,10 +89,10 @@ export default async function Header() {
                           </span>
                         )}
                     </Link>
-                    {/* {link.subMenuCollection &&
+                    {link.subMenuCollection &&
                       link.label !== "Home" &&
                       link.label !== "Contacts" && (
-                        <ul className="absolute mt-4 left-0 bg-white border border-gray-200 z-20 min-w-[268px] opacity-0 group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                        <ul className="absolute top-auto left-0 bg-white border border-gray-200 z-20 min-w-[268px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
                           {link.subMenuCollection.items.map(
                             (subLink: any, subIndex: number) => (
                               <li
@@ -95,7 +109,7 @@ export default async function Header() {
                             )
                           )}
                         </ul>
-                      )} */}
+                      )}
                   </li>
                 ))}
               </ul>

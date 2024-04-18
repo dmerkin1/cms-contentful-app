@@ -4,10 +4,10 @@ export default function HamburgerMenu() {
   const toggleMenu = () => {
     const menu = document.getElementById("menu");
     if (menu) {
-      menu.classList.toggle("hidden");
-      document.body.classList.toggle("menu-open");
+        document.body.classList.toggle("menu-open");
     }
-  };
+};
+
 
   return (
     <button
@@ -16,7 +16,7 @@ export default function HamburgerMenu() {
       aria-expanded="false"
     >
       <svg
-        className="w-6 h-6 fill-current"
+        className="w-6 h-6 fill-custom-blue"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >
