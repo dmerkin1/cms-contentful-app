@@ -1,16 +1,16 @@
-"use client";
+// "use client";
 
-import { useState } from 'react';
-import Header from './index';
+// import { useState } from 'react';
+// import Header from './index';
 
-export default function HeaderClient() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+// export default function HeaderClient() {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+//   const toggleMenu = () => {
+//     setIsMenuOpen(!isMenuOpen);
+//   };
 
-  return (
-    <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
-  );
-}
+//   return (
+//     <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+//   );
+// }
