@@ -185,6 +185,12 @@ export async function getLinks(): Promise<any> {
         items {
           href
           label
+          subMenuCollection {
+            items {
+              href
+              label
+            }
+          }
         }
       }
     }`
@@ -247,6 +253,27 @@ export async function getLogo(): Promise<any> {
           items {
             image {
               url
+              title
+            }
+          }
+        }
+      }`
+    );
+    return entries?.data?.imageWithFocalPointCollection?.items[1];
+  } catch (error) {
+    console.error("An error occurred while fetching the logo:", error);
+  }
+}
+
+export async function getLogoInverse(): Promise<any> {
+  try {
+    const entries = await fetchGraphQL(
+      `query {
+        imageWithFocalPointCollection {
+          items {
+            image {
+              url
+              title
             }
           }
         }
@@ -255,5 +282,26 @@ export async function getLogo(): Promise<any> {
     return entries?.data?.imageWithFocalPointCollection?.items[0];
   } catch (error) {
     console.error("An error occurred while fetching the logo:", error);
+  }
+}
+
+export async function howWeWork(): Promise<any> {
+  try {
+    const entries = await fetchGraphQL(
+      `query {
+        howWeWorkCollection {
+          items {
+            title
+            text
+            image {
+              url
+            }
+          }
+        }
+      }`
+    );
+    return entries?.data?.howWeWorkCollection?.items;
+  } catch (error) {
+    console.error("An error occurred while fetching how we work data:", error);
   }
 }

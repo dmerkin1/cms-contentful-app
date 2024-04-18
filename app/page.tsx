@@ -1,19 +1,21 @@
 import ContentfulImage from "@/lib/contentful-image";
 import Card from "@/components/cards";
-import Testimonials from "@/components/testimonials";
+import TestimonialCarousel from "@/components/testimonials";
 import Link from "next/link";
-import { getHeroImage } from "@/lib/api";
+import { getHeroImage, getAllTestimonials } from "@/lib/api";
 import { contentfulLoader } from "@/lib/contentful-image";
+import HowWeWork from "@/components/how-we-work";
 
 export default async function Page() {
   const heroImage = await getHeroImage();
+  const testimonials = await getAllTestimonials();
 
   return (
     <div className="relative">
       {heroImage && (
         <div className="relative">
           {heroImage?.image?.image?.url && (
-            <div className="w-full h-[600px]">
+            <div className="w-full h-[416px] sm:h-[310px] md:h-[461px] xl:h-[591px]">
               <ContentfulImage
                 loader={contentfulLoader}
                 priority
@@ -32,7 +34,7 @@ export default async function Page() {
                   <h1 className="text-4xl md:text-5xl xl:text-6xl leading-[1] font-bold text-center md:text-left mb-5 max-w-screen-lg">
                     {heroImage?.headline}
                   </h1>
-                  <p className="text-lg md:text-xl font-light text-center md:text-left mb-10 max-w-screen-lg">
+                  <p className="text-xl font-thin text-[18px] lg:text-[22px] lg:leading-[36px] mb-10">
                     {heroImage?.subText?.json?.content[0]?.content[0]?.value}
                   </p>
                   <div className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4 items-center">
@@ -42,7 +44,7 @@ export default async function Page() {
                       </button>
                     </Link>
                     <Link href="/" passHref>
-                      <button className="border-2 hover:bg-white hover:text-hover-blue border-white border-solid py-3 px-8 rounded transition duration-300 whitespace-nowrap">
+                      <button className="border-2 hover:bg-white hover:text-hover-blue border-white border-solid  text-white py-3 px-8 rounded transition duration-300 whitespace-nowrap">
                         Purchase Now
                       </button>
                     </Link>
@@ -57,7 +59,8 @@ export default async function Page() {
       <div className="flex flex-wrap justify-center mt-10">
         <Card />
       </div>
-      <Testimonials />
+      <HowWeWork />
+      <TestimonialCarousel testimonials={testimonials} />
     </div>
   );
 }
