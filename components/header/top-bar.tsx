@@ -14,7 +14,7 @@ const TopBar = async () => {
         <div className="flex items-center space-x-4">
           <div className="flex gap-2">
             <svg
-              className="bg-gray-300 h-[27px] w-[27px] p-1 rounded-full"
+              className="bg-gray-300 h-[27px] w-[27px] p-1 rounded-full hover:bg-white hover:text-hover-blue transition-all duration-300 ease-in-out hover:cursor-pointer"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
@@ -27,7 +27,7 @@ const TopBar = async () => {
               ></path>
             </svg>
             <svg
-              className="bg-gray-300 h-[27px] w-[27px] p-[6px] rounded-full"
+              className="bg-gray-300 h-[27px] w-[27px] p-[6px] rounded-full hover:bg-white hover:text-hover-blue transition-all duration-300 ease-in-out hover:cursor-pointer"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
@@ -40,7 +40,7 @@ const TopBar = async () => {
               ></path>
             </svg>
             <svg
-              className="bg-gray-300 h-[27px] w-[27px] p-[6px] rounded-full"
+              className="bg-gray-300 h-[27px] w-[27px] p-[6px] rounded-full hover:bg-white hover:text-hover-blue transition-all duration-300 ease-in-out hover:cursor-pointer"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
@@ -60,7 +60,7 @@ const TopBar = async () => {
           <div className="text-lg font-bold">
             <ContentfulImage
               src={logo?.image?.url}
-              alt="logo"
+              alt={logo?.image?.title}
               width={150}
               height={150}
             />
@@ -97,7 +97,9 @@ const TopBar = async () => {
             </div>
             <div>
               <p className="font-bold">267 Park Avenue</p>
-              <p className="font-light text-gray-500">New York, NY 90210</p>
+              <p className="font-light text-gray-500 hover:text-hover-blue transition-all duration-300 ease-in-out hover:cursor-pointer">
+                New York, NY 90210
+              </p>
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-center text-center md:text-left gap-[14px]">
@@ -117,8 +119,12 @@ const TopBar = async () => {
               </svg>
             </div>
             <div>
-              <p className="font-bold">(123) 45678910</p>
-              <p className="font-light text-gray-500">info@demolink.org</p>
+              <p className="font-bold hover:text-hover-blue transition-all duration-300 ease-in-out hover:cursor-pointer">
+                (123) 45678910
+              </p>
+              <p className="font-light text-gray-500 hover:text-hover-blue transition-all duration-300 ease-in-out hover:cursor-pointer">
+                info@demolink.org
+              </p>
             </div>
           </div>
         </div>

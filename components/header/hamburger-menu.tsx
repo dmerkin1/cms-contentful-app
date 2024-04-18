@@ -5,6 +5,7 @@ export default function HamburgerMenu() {
     const menu = document.getElementById("menu");
     if (menu) {
       menu.classList.toggle("hidden");
+      document.body.classList.toggle("menu-open");
     }
   };
 

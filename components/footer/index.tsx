@@ -1,26 +1,53 @@
-import { getFooterText, getLinks, getLogo } from "@/lib/api";
+import { getFooterText, getLinks, getLogoInverse } from "@/lib/api";
 import Link from "next/link";
 import ContentfulImage from "@/lib/contentful-image";
 
+interface LinkItem {
+  href: string;
+  label: string;
+  subMenuCollection?: {
+    items: {
+      href: string;
+      label: string;
+    }[];
+  };
+}
+
 export default async function Footer() {
   const footerData = await getFooterText();
-  const linkData = await getLinks();
-  const reverseLinks = linkData.reverse();
+  const linkData: LinkItem[] = await getLinks();
   const footerText: string =
     footerData.content.json.content[0].content[0].value;
-  const logo = await getLogo();
-
+  const logo = await getLogoInverse();
+  const mainNavLinks: LinkItem[] = linkData.filter((link: LinkItem) =>
+    ["About Us", "Blog", "Contacts", "Services", "Our Team", "Blocks"].includes(
+      link.label
+    )
+  );
+  const leftColumnLinks = mainNavLinks.filter((link: LinkItem) =>
+    ["About Us", "Blog", "Contacts"].includes(link.label)
+  );
+  const rightColumnLinks = mainNavLinks.filter((link: LinkItem) =>
+    ["Blocks", "Our Team", "Services"].includes(link.label)
+  );
   return (
     <footer className="text-white bg-accent-1 border-t border-accent-2 bg-custom-blue font-light">
-      <div className="container mx-auto px-20">
+      <div className="container mx-auto">
         <div className="py-10 flex flex-col md:flex-row lg:flex-row items-center lg:justify-center flex-wrap text-center md:text-left">
-          <div className="footer-column lg:w-1/4 md:w-1/2 mb-6 lg:mb-0">
+          <div className="lg:w-1/4 md:w-1/2 mb-6 lg:mb-0">
+            <ContentfulImage
+              src={logo?.image?.url}
+              alt={logo?.image?.title}
+              width={200}
+              height={50}
+              className="mb-5"
+            />
             <p className="offset-sm-top-34 pr-5">{footerText}</p>
             <div className="w-full mt-[22px] flex items-center justify-center md:justify-start gap-[30px]">
               <em className="font-light">Follow Us:</em>
               <div className="flex gap-2">
                 <svg
-                  className="bg-white text-custom-blue h-[27px] w-[27px] p-1 rounded-full"
+                  className="bg-white text-custom-blue h-[27px] w-[27px] p-1 rounded-full hover:bg-hover-blue hover:text-white transition-all duration-300 ease-in-out hover:cursor-pointer"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -33,7 +60,7 @@ export default async function Footer() {
                   ></path>
                 </svg>
                 <svg
-                  className="bg-white text-custom-blue h-[27px] w-[27px] p-[6px] rounded-full"
+                  className="bg-white text-custom-blue h-[27px] w-[27px] p-[6px] rounded-full hover:bg-hover-blue hover:text-white transition-all duration-300 ease-in-out hover:cursor-pointer"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -46,7 +73,7 @@ export default async function Footer() {
                   ></path>
                 </svg>
                 <svg
-                  className="bg-white text-custom-blue h-[27px] w-[27px] p-[6px] rounded-full"
+                  className="bg-white text-custom-blue h-[27px] w-[27px] p-[6px] rounded-full hover:bg-hover-blue hover:text-white transition-all duration-300 ease-in-out hover:cursor-pointer"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -61,49 +88,49 @@ export default async function Footer() {
               </div>
             </div>
           </div>
-          <div className="footer-column lg:w-1/4 md:w-1/2 mb-6 lg:mb-0 pr-5">
+          <div className="lg:w-1/4 md:w-1/2 mb-6 lg:mb-0 pr-5">
             <div>
-              <h4 className="text-lg font-semibold pb-5">Navigation</h4>
-              <hr className="w-full sm:w-[315px] md:w-[275px] lg:w-[385px] xl:w-[200px] border-b-1 border-gray-400 pb-5"></hr>
+              <h4 className="text-2xl font-semibold pb-5 align-top">
+                Navigation
+              </h4>
+              <hr className="w-full sm:w-[315px] md:w-[275px] lg:w-[200px] xl:w-[200px] border-b-1 border-gray-500 pb-5"></hr>
             </div>
             <nav>
               <div className="flex">
-                <ul className="flex flex-col space-y-2 text-gray-400 pt-3">
-                  {reverseLinks
-                    .slice(0, Math.ceil(reverseLinks.length / 2))
-                    .map((link: any, index: number) => (
-                      <li key={index}>
-                        <Link
-                          href={link.href}
-                          className="hover:underline hover:text-hover-blue"
-                        >
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
+                <ul className="flex flex-col space-y-2 text-gray-500 pt-3">
+                  {leftColumnLinks.map((link: any, index: number) => (
+                    <li key={index}>
+                      <Link
+                        href={link.href}
+                        className="hover:text-hover-blue transition-all duration-300 ease-in-out"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
-                <ul className="flex flex-col space-y-2 text-gray-400 pt-3 ml-auto ">
-                  {reverseLinks
-                    .slice(Math.ceil(reverseLinks.length / 2))
-                    .map((link: any, index: number) => (
-                      <li key={index}>
-                        <Link
-                          href={link.href}
-                          className="hover:underline hover:text-hover-blue"
-                        >
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
+                <ul className="flex flex-col space-y-2 text-gray-500 pt-3 ml-14 ">
+                  {rightColumnLinks.map((link: any, index: number) => (
+                    <li key={index}>
+                      <Link
+                        href={link.href}
+                        className="hover:text-hover-blue transition-all duration-300 ease-in-out"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </nav>
           </div>
 
-          <div className="footer-column lg:w-1/4 md:w-1/2 mb-6 lg:mb-0">
+          <div className="lg:w-1/4 md:w-1/2 mb-6 lg:mb-0">
             <div>
-              <h4 className="text-lg font-semibold pb-5">Contact Info</h4>
-              <hr className="w-full sm:w-[315px] md:w-[275px] lg:w-[385px] xl:w-[200px] border-b-1 border-gray-400 pb-5"></hr>
+              <h4 className="text-2xl font-semibold pb-5 align-top">
+                Contact Info
+              </h4>
+              <hr className="w-full sm:w-[315px] md:w-[275px] lg:w-[200px] xl:w-[200px] border-b-1 border-gray-500 pb-5"></hr>
             </div>
             <div className="flex flex-col items-center gap-[20px] md:gap-[14px] md:mt-[12px]">
               <div className="w-full flex gap-[20px] items-center">
@@ -122,7 +149,9 @@ export default async function Footer() {
                   ></path>
                 </svg>
 
-                <p className="font-bold">(123) 45678910</p>
+                <p className="font-bold hover:text-hover-blue transition-all duration-300 ease-in-out hover:cursor-pointer">
+                  (123) 45678910
+                </p>
               </div>
               <div className="w-full flex gap-[20px] items-center">
                 <svg
@@ -139,7 +168,9 @@ export default async function Footer() {
                     d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
                   ></path>
                 </svg>
-                <p className="font-light">info@demolink.org</p>
+                <p className="font-light hover:text-hover-blue transition-all duration-300 ease-in-out hover:cursor-pointer">
+                  info@demolink.org
+                </p>
               </div>
               <div className="w-full flex gap-[20px] items-center">
                 <svg
@@ -167,17 +198,17 @@ export default async function Footer() {
                 >
                   <path d="M16.114-0.011c-6.559 0-12.114 5.587-12.114 12.204 0 6.93 6.439 14.017 10.77 18.998 0.017 0.020 0.717 0.797 1.579 0.797h0.076c0.863 0 1.558-0.777 1.575-0.797 4.064-4.672 10-12.377 10-18.998 0-6.618-4.333-12.204-11.886-12.204zM16.515 29.849c-0.035 0.035-0.086 0.074-0.131 0.107-0.046-0.032-0.096-0.072-0.133-0.107l-0.523-0.602c-4.106-4.71-9.729-11.161-9.729-17.055 0-5.532 4.632-10.205 10.114-10.205 6.829 0 9.886 5.125 9.886 10.205 0 4.474-3.192 10.416-9.485 17.657zM16.035 6.044c-3.313 0-6 2.686-6 6s2.687 6 6 6 6-2.687 6-6-2.686-6-6-6zM16.035 16.044c-2.206 0-4.046-1.838-4.046-4.044s1.794-4 4-4c2.207 0 4 1.794 4 4 0.001 2.206-1.747 4.044-3.954 4.044z"></path>
                 </svg>
-                <div>
+                <div className="hover:text-hover-blue transition-all duration-300 ease-in-out hover:cursor-pointer">
                   <p className="font-bold">267 Park Avenue</p>
                   <p className="font-light">New York, NY 90210</p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="footer-column lg:w-1/4 md:w-1/2 mb-6 lg:mb-0">
+          <div className="lg:w-1/4 md:w-1/2 mb-6 lg:mb-0">
             <div>
-              <h4 className="text-lg font-semibold pb-5">Newsletter Signup</h4>
-              <hr className="w-full sm:w-[315px] md:w-[275px] lg:w-[385px] xl:w-[200px] border-b-1 border-gray-400 pb-5"></hr>
+              <h4 className="text-2xl font-semibold pb-5">Subscribe</h4>
+              <hr className="w-full sm:w-[315px] md:w-[275px] lg:w-[200px] xl:w-[200px] border-b-1 border-gray-500 pb-5"></hr>
             </div>
 
             <div className="pt-3">
@@ -195,7 +226,7 @@ export default async function Footer() {
         </div>
       </div>
 
-      <div className="flex justify-center items-center py-4 border-t bg-bottom-footer-bar text-left">
+      <div className="flex justify-center items-center py-4 bg-bottom-footer-bar text-left">
         <p className="text-sm">
           &copy; {new Date().getFullYear()} FinPRO. Privacy Policy{" "}
         </p>
