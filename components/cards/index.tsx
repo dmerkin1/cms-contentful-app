@@ -1,6 +1,14 @@
 import { getCards } from "@/lib/api";
 import ContentfulImage from "@/lib/contentful-image";
 
+interface Card {
+  title: string;
+  subText: string;
+  customIcon: {
+    url: string;
+  };
+}
+
 export default async function Page() {
   const cards = await getCards();
 
@@ -19,7 +27,7 @@ export default async function Page() {
         <div className="w-full max-w-screen-xl px-4">
           <div className="w-full">
             {cards ? (
-              cards.map((card: any, index: number) => (
+              cards.map((card: Card, index: number) => (
                 <div
                   key={index}
                   className="inline-block w-full sm:w-1/2 md:w-1/2 lg:w-1/3 px-4 mb-8"
@@ -29,12 +37,12 @@ export default async function Page() {
                       <ContentfulImage
                         width={400}
                         height={200}
-                        src={card.customIcon.url}
-                        alt={card.title}
+                        src={card?.customIcon?.url}
+                        alt={card?.title}
                         className="rounded w-full h-56 text-hover-blue"
                       />
                     </div>
-                    <div className="">
+                    <div>
                       <h3 className="text-xl text-black font-bold mb-3">
                         {card.title}
                       </h3>

@@ -32,7 +32,7 @@ export default async function Footer() {
   );
   return (
     <footer className="text-white bg-accent-1 border-t border-accent-2 bg-custom-blue font-light">
-      <div className="container lg:mx-auto md:ml-14 ">
+      <div className="container mx-auto flex flex-wrap justify-center items-center space-x-10 px-4">
         <div className="py-10 flex flex-col md:flex-row lg:flex-row items-center lg:justify-center flex-wrap text-center md:text-left">
           <div className="lg:w-1/4 md:w-1/2 mb-6 lg:mb-0 flex flex-col items-center md:items-start justify-center">
             <ContentfulImage
@@ -100,7 +100,7 @@ export default async function Footer() {
             <nav>
               <div className="flex text-left">
                 <ul className="flex flex-col space-y-2 text-gray-500 pt-3">
-                  {leftColumnLinks.map((link: any, index: number) => (
+                  {leftColumnLinks.map((link: LinkItem, index: number) => (
                     <li key={index}>
                       <Link
                         href={link.href}
@@ -112,7 +112,7 @@ export default async function Footer() {
                   ))}
                 </ul>
                 <ul className="flex flex-col space-y-2 text-gray-500 pt-3 ml-14 ">
-                  {rightColumnLinks.map((link: any, index: number) => (
+                  {rightColumnLinks.map((link: LinkItem, index: number) => (
                     <li key={index}>
                       <Link
                         href={link.href}
@@ -127,14 +127,14 @@ export default async function Footer() {
             </nav>
           </div>
 
-          <div className="lg:w-1/4 md:w-1/2 mb-6 lg:mb-0">
+          <div className="lg:w-1/4 md:w-1/2 mb-6 lg:mb-0 md:mt-14">
             <div>
               <h4 className="text-lg font-semibold pb-5 md:text-2xl">
                 Contact Info
               </h4>
               <hr className="w-full sm:w-[315px] md:w-[275px] lg:w-[200px] xl:w-[200px] border-b-1 border-gray-500 pb-5"></hr>
             </div>
-            <div className="flex flex-col items-center gap-[20px] md:gap-[14px] md:mt-[12px]">
+            <div className="flex flex-col items-center gap-[20px] md:gap-[14px]">
               <div className="w-full flex gap-[20px] items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
