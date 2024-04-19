@@ -239,7 +239,7 @@ export async function getHeroImage(): Promise<any> {
         }
       }`
     );
-    return entries?.data?.heroImageCollection?.items[0];
+    return entries?.data?.heroImageCollection?.items;
   } catch (error) {
     console.error("An error occurred while fetching the hero image:", error);
   }
@@ -259,7 +259,7 @@ export async function getLogo(): Promise<any> {
         }
       }`
     );
-    return entries?.data?.imageWithFocalPointCollection?.items[1];
+    return entries?.data?.imageWithFocalPointCollection?.items[3];
   } catch (error) {
     console.error("An error occurred while fetching the logo:", error);
   }
@@ -279,7 +279,7 @@ export async function getLogoInverse(): Promise<any> {
         }
       }`
     );
-    return entries?.data?.imageWithFocalPointCollection?.items[0];
+    return entries?.data?.imageWithFocalPointCollection?.items[2];
   } catch (error) {
     console.error("An error occurred while fetching the logo:", error);
   }

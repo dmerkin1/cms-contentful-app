@@ -4,6 +4,7 @@ import { getLinks, getLogo } from "@/lib/api";
 import HamburgerMenu from "./hamburger-menu";
 import ContentfulImage, { contentfulLoader } from "@/lib/contentful-image";
 import ContactMenu from "./contact-menu.client";
+import "./styles.css";
 
 interface LinkItem {
   href: string;
@@ -80,6 +81,7 @@ export default async function Header() {
                 {reorderedMenuLinks.map(
                   (link: LinkItem | undefined, index: number) => (
                     <li
+                      tabIndex={0}
                       key={index}
                       className={`relative ${
                         link?.subMenuCollection &&
@@ -113,11 +115,12 @@ export default async function Header() {
                       </Link>
                       {link?.subMenuCollection &&
                         link.subMenuCollection.items.length > 0 && (
-                          <ul className="absolute pt-4 left-0 w-full bg-white md:border-b-2 border-gray-400 z-0 min-w-[268px] opacity-0 invisible transition-opacity duration-300 group-hover:opacity-100 group-hover:visible">
+                          <ul className="absolute pt-4 left-0 w-full bg-white md:border-b-1 border-gray-400 z-0 min-w-[268px] opacity-0 invisible transition-opacity duration-300 group-hover:opacity-100 group-hover:visible">
                             <div className="md:bg-custom-blue h-4 w-full absolute top-0 left-0"></div>
                             {link.subMenuCollection.items.map(
                               (subLink: LinkItem, subIndex: number) => (
                                 <li
+                                  tabIndex={0}
                                   key={subIndex}
                                   className="font-light px-4 py-2 whitespace-nowrap hover:bg-gray-100 border-b-2 border-gray-50"
                                 >

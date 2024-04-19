@@ -6,7 +6,6 @@ import HowWeWork from "@/components/how-we-work";
 
 export default async function Page() {
   const heroImage = [await getHeroImage()];
-  console.log(JSON.stringify(heroImage, null, 2));
   const testimonials = await getAllTestimonials();
 
   return (
