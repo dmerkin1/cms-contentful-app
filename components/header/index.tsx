@@ -110,12 +110,13 @@ export default async function Header() {
                       </Link>
                       {link?.subMenuCollection &&
                         link.subMenuCollection.items.length > 0 && (
-                          <ul className="absolute left-0 w-full bg-white border border-gray-200 z-20 min-w-[268px] opacity-0 invisible transition-opacity duration-300 group-hover:opacity-100 group-hover:visible">
+                          <ul className="absolute pt-4 left-0 w-full bg-white md:border-b-2 border-gray-400 z-0 min-w-[268px] opacity-0 invisible transition-opacity duration-300 group-hover:opacity-100 md:group-hover:visible">
+                            <div className="md:bg-custom-blue h-4 w-full absolute top-0 left-0"></div>
                             {link.subMenuCollection.items.map(
                               (subLink: LinkItem, subIndex: number) => (
                                 <li
                                   key={subIndex}
-                                  className="font-light px-4 py-2 whitespace-nowrap border-b hover:bg-gray-100"
+                                  className="font-light px-4 py-2 whitespace-nowrap hover:bg-gray-100 border-b-2 border-gray-50"
                                 >
                                   <Link
                                     href={subLink.href}
