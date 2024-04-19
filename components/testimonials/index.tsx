@@ -1,4 +1,4 @@
-import TestimonialCarousel, { Testimonial } from "./TestimonialCarousel.client";
+import TestimonialCarousel, { Testimonial } from "./testimonial-carousel.client";
 
 export default async function Page({ testimonials }: { testimonials: Testimonial[] }) {
   return (

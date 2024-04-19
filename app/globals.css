@@ -40,14 +40,15 @@ body {
     font-weight: 800;
     text-decoration: none;
   }
+
   #menu li {
     position: relative;
   }
-  
-  #menu li:hover > ul {
+
+  #menu li:hover>ul {
     display: block;
   }
-  
+
   #menu li ul {
     display: none;
     position: absolute;
@@ -58,13 +59,14 @@ body {
     padding: 10px 0;
     z-index: 1001;
   }
-  
+
   #menu li ul li {
     padding: 5px 10px;
   }
-  
+
   #menu li ul li a {
     font-weight: 800;
     text-decoration: none;
   }
+
 }

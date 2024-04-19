@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getLinks, getLogo } from "@/lib/api";
 import HamburgerMenu from "./hamburger-menu";
 import ContentfulImage, { contentfulLoader } from "@/lib/contentful-image";
+import ContactMenu from "./contact-menu.client";
 
 interface LinkItem {
   href: string;
@@ -55,7 +56,9 @@ export default async function Header() {
                 className="ml-4"
               />
             </div>
+            <ContactMenu />
             <svg
+              id="social-media-menu"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -71,9 +74,9 @@ export default async function Header() {
             </svg>
             <nav
               id="menu"
-              className="md:flex md:w-auto relative text-hover-blue md:text-white"
+              className="md:flex md:w-auto relative text-hover-blue md:text-white whitespace-nowrap"
             >
-              <ul className="flex flex-col md:flex-row md:space-x-4 lg:px-36">
+              <ul className="flex flex-col md:flex-row md:space-x-4 lg:px-36 submenu">
                 {reorderedMenuLinks.map(
                   (link: LinkItem | undefined, index: number) => (
                     <li
@@ -110,7 +113,7 @@ export default async function Header() {
                       </Link>
                       {link?.subMenuCollection &&
                         link.subMenuCollection.items.length > 0 && (
-                          <ul className="absolute pt-4 left-0 w-full bg-white md:border-b-2 border-gray-400 z-0 min-w-[268px] opacity-0 invisible transition-opacity duration-300 group-hover:opacity-100 md:group-hover:visible">
+                          <ul className="absolute pt-4 left-0 w-full bg-white md:border-b-2 border-gray-400 z-0 min-w-[268px] opacity-0 invisible transition-opacity duration-300 group-hover:opacity-100 group-hover:visible">
                             <div className="md:bg-custom-blue h-4 w-full absolute top-0 left-0"></div>
                             {link.subMenuCollection.items.map(
                               (subLink: LinkItem, subIndex: number) => (
