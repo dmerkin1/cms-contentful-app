@@ -1,4 +1,4 @@
-import HeroSection from "@/components/hero/hero-carousel.client";
+import HeroSection from "@/components/hero/index";
 import Card from "@/components/cards";
 import TestimonialCarousel from "@/components/testimonials";
 import { getHeroImage, getAllTestimonials } from "@/lib/api";

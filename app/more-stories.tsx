@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Avatar from "./avatar";
-import DateComponent from "./date";
-import CoverImage from "./cover-image";
+import Avatar from "@/app/avatar";
+import DateComponent from "@/app/date";
+import CoverImage from "@/app/cover-image";
 
 function PostPreview({
   title,

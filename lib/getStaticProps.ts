@@ -1,5 +1,5 @@
 import { GetStaticPropsContext } from "next";
-import { getAllPosts, getPreviewPostBySlug, getPostAndMorePosts } from "./api";
+import { getAllPosts, getPreviewPostBySlug, getPostAndMorePosts } from "@/lib/api";
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
   const slug = Array.isArray(params?.slug)

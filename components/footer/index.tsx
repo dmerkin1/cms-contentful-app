@@ -1,17 +1,7 @@
 import { getFooterText, getLinks, getLogoInverse } from "@/lib/api";
 import Link from "next/link";
 import ContentfulImage from "@/lib/contentful-image";
-
-interface LinkItem {
-  href: string;
-  label: string;
-  subMenuCollection?: {
-    items: {
-      href: string;
-      label: string;
-    }[];
-  };
-}
+import { LinkItem } from "@/lib/types";
 
 export default async function Footer() {
   const footerData = await getFooterText();
@@ -39,7 +29,7 @@ export default async function Footer() {
               src={logo?.image?.url}
               alt={logo?.image?.title}
               width={200}
-              height={50}
+              height={75}
               className="mb-5"
             />
             <p className="offset-sm-top-34 pr-5 text-center md:text-left">

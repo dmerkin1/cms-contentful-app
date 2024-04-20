@@ -1,30 +1,36 @@
-import TopBar from "./top-bar";
+import TopBar from "@/components/header/top-bar";
 import Link from "next/link";
 import { getLinks, getLogo } from "@/lib/api";
-import HamburgerMenu from "./hamburger-menu";
+import HamburgerMenu from "@/components/header/hamburger-menu";
 import ContentfulImage, { contentfulLoader } from "@/lib/contentful-image";
 import ContactMenu from "./contact-menu.client";
 import "./styles.css";
+import { LinkItem } from "@/lib/types";
+import BlocksSubMenu from "@/components/header/blocks-submenu";
 
-interface LinkItem {
-  href: string;
-  label: string;
-  subMenuCollection?: {
-    items: {
-      href: string;
-      label: string;
-    }[];
-  };
-}
 export default async function Header() {
   const logo = await getLogo();
   const linkData: LinkItem[] = await getLinks();
-  const mainMenuLinks: LinkItem[] = linkData.filter(
-    (link: LinkItem) =>
-      (link.subMenuCollection && link.subMenuCollection.items.length > 0) ||
-      link.label === "Home" ||
-      link.label === "Contacts"
-  );
+const labels = [
+  "Home",
+  "Contacts",
+  "Gallery",
+  "Gallery album",
+  "Maps",
+  "Call Services page",
+  "Sliders",
+  "Forms",
+  "Subscribe forms",
+  "Small features",
+  "Team page",
+  "Testimonials"
+];
+
+const mainMenuLinks: LinkItem[] = linkData.filter(
+  (link: LinkItem) =>
+    (link.subMenuCollection && link.subMenuCollection.items.length > 0) ||
+    labels.includes(link.label)
+);
 
   const orderedLabels = [
     "Home",
@@ -38,6 +44,10 @@ export default async function Header() {
 
   const reorderedMenuLinks = orderedLabels.map((label) =>
     mainMenuLinks.find((link: LinkItem) => link.label === label)
+  );
+
+  const blocksSubMenuItems = mainMenuLinks.find(
+    (link: LinkItem) => link.label === "Blocks"
   );
 
   return (
@@ -103,7 +113,7 @@ export default async function Header() {
                               viewBox="0 0 24 24"
                               strokeWidth="2"
                               stroke="currentColor"
-                              className="h-4 w-4 text-hover-blue ml-2"
+                              className="h-4 w-4 ml-2 text-hover-blue group-hover:rotate-180 transition-all duration-500"
                             >
                               <path
                                 strokeLinecap="round"
@@ -113,6 +123,14 @@ export default async function Header() {
                             </svg>
                           )}
                       </Link>
+                      {link?.label === "Blocks" &&
+                        blocksSubMenuItems?.subMenuCollection?.items &&
+                        blocksSubMenuItems.subMenuCollection.items.length >
+                          0 && (
+                          <BlocksSubMenu
+                            items={blocksSubMenuItems.subMenuCollection.items}
+                          />
+                        )}
                       {link?.subMenuCollection &&
                         link.subMenuCollection.items.length > 0 && (
                           <ul className="absolute pt-4 left-0 w-full bg-white md:border-b-1 border-gray-400 z-0 min-w-[268px] opacity-0 invisible transition-opacity duration-300 group-hover:opacity-100 group-hover:visible">
@@ -122,7 +140,7 @@ export default async function Header() {
                                 <li
                                   tabIndex={0}
                                   key={subIndex}
-                                  className="font-light px-4 py-2 whitespace-nowrap hover:bg-gray-100 border-b-2 border-gray-50"
+                                  className={`font-light px-4 py-2 whitespace-nowrap hover:bg-gray-100 border-b-2 border-gray-50 ${link?.label === "Blocks" ? "hidden" : ""}`}
                                 >
                                   <Link
                                     href={subLink.href}

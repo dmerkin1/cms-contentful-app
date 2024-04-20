@@ -1,13 +1,6 @@
 import { howWeWork } from "@/lib/api";
 import ContentfulImage from "@/lib/contentful-image";
-
-interface HowWeWork {
-  title: string;
-  text: string;
-  image: {
-    url: string;
-  };
-}
+import { HowWeWorkType } from "@/lib/types";
 
 export default async function HowWeWork() {
   const howWeWorkData = await howWeWork();
@@ -15,7 +8,7 @@ export default async function HowWeWork() {
   return (
     <div className="flex flex-wrap justify-center mb-14 bg-gray-50 py-5">
       {howWeWorkData ? (
-        howWeWorkData.map((work: HowWeWork, index: number) => (
+        howWeWorkData.map((work: HowWeWorkType, index: number) => (
           <div
             key={index}
             className="flex flex-wrap items-center justify-center md:justify-start w-full max-w-screen-lg mx-auto mb-8"

@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { ContentfulImageProps, contentfulLoader } from "./contentful-image";
+import { contentfulLoader } from "@/lib/contentful-image";
+import { ContentfulImageProps } from "@/lib/types";
+
 export default function FeaturedImage({
   title,
   url,

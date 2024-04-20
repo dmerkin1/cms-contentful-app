@@ -1,13 +1,6 @@
 import { getCards } from "@/lib/api";
 import ContentfulImage from "@/lib/contentful-image";
-
-interface Card {
-  title: string;
-  subText: string;
-  customIcon: {
-    url: string;
-  };
-}
+import { Card } from "@/lib/types";
 
 export default async function Page() {
   const cards = await getCards();

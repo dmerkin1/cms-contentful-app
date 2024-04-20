@@ -2,20 +2,7 @@
 
 import ContentfulImage from "@/lib/contentful-image";
 import { useState } from "react";
-
-export interface Testimonial {
-  name: string;
-  location: string;
-  product: string;
-  image: {
-    url: string;
-  };
-  testimonial: {
-    json: {
-      content: string[];
-    };
-  };
-}
+import { Testimonial } from "@/lib/types";
 
 function TestimonialCarousel({
   testimonials,

@@ -1,4 +1,5 @@
-import TestimonialCarousel, { Testimonial } from "./testimonial-carousel.client";
+import TestimonialCarousel from "@/components/testimonials/testimonial-carousel.client";
+import { Testimonial } from "@/lib/types";
 
 export default async function Page({ testimonials }: { testimonials: Testimonial[] }) {
   return (

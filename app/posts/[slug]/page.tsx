@@ -1,9 +1,9 @@
 import { draftMode } from "next/headers";
 
-import MoreStories from "../../more-stories";
-import Avatar from "../../avatar";
-import Date from "../../date";
-import FeaturedImage from "../../../lib/featured-image";
+import MoreStories from "@/app/more-stories";
+import Avatar from "@/app/avatar";
+import Date from "@/app/date";
+import FeaturedImage from "@/lib/featured-image";
 
 import { Markdown } from "@/lib/markdown";
 import { getAllPosts, getPostAndMorePosts } from "@/lib/api";
