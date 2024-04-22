@@ -16,5 +16,7 @@ export default function CategoryComponent({
 }) {
   const pathname = usePathname();
   const { slug } = params;
+
+  return <div>Loading...</div>;
   return <Link href="/blog">Back to blog</Link>;
 }
