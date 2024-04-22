@@ -34,6 +34,90 @@ const POST_GRAPHQL_FIELDS = `
   }
 `;
 
+const landingPageQuery = `
+query pageLanding($slug: String) {
+  pageLandingCollection(where: {slug: $slug}, limit: 1) {
+    items {
+      internalName
+      slug
+      __typename
+      sectionsCollection(limit: 20) {
+        ... on PageLandingSectionsCollection {
+          items {
+            ... on HeroCarousel {
+              ...HeroCarouselData
+            }
+            ... on SetOfCard {
+              ...SetofCardsData
+            }
+            ... on SetOfTestimonials {
+              ...SetofTestimonialData
+            }
+          }
+        }
+      }
+    }
+  }
+}`;
+
+const fragments = `
+fragment HeroCarouselData on HeroCarousel {
+  __typename
+  heroImageCollection {
+    items {
+      headline
+      darkenImage
+      subText {
+        json
+      }
+      image {
+        ... on ImageWithFocalPoint {
+          image {
+            url
+          }
+          focalPoint
+          altText
+        }
+      }
+    }
+  }
+}
+
+fragment SetofCardsData on SetOfCard {
+  __typename
+  title
+  titleSize
+  cardsCollection {
+    items {
+      title
+      subText
+      customIcon {
+        url
+      }
+    }
+  }
+}
+
+fragment SetofTestimonialData on SetOfTestimonials {
+  __typename
+  title
+  titleSize
+  testimonialsCollection {
+    items {
+      name
+      image {
+        url
+      }
+      location
+      testimonial {
+        json
+      }
+      product
+    }
+  }
+}
+`;
+
 async function fetchGraphQL(query: string, preview = false): Promise<any> {
   try {
     const response = await fetch(

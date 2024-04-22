@@ -22,9 +22,7 @@ export default function CoverImage({
       priority
       width={2000}
       height={1000}
-      className={cn("shadow-small w-full", {
-        "hover:shadow-medium transition-shadow duration-200": slug,
-      })}
+      className={`w-full aspect-[2.11/1] h-auto object-cover rounded-sm`}
       src={url}
     />
   );

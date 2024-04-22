@@ -81,3 +81,7 @@ export interface HeroCarouselClientProps {
 export interface BlocksSubMenuProps {
   items: LinkItem[];
 }
+
+export interface CategoryProps {
+  categoryName: string;
+}

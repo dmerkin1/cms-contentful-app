@@ -2,6 +2,7 @@ import Link from "next/link";
 import Avatar from "@/app/avatar";
 import DateComponent from "@/app/date";
 import CoverImage from "@/app/cover-image";
+import CategoryComponent from "@/app/category";
 
 function PostPreview({
   title,
@@ -11,6 +12,7 @@ function PostPreview({
   excerpt,
   author,
   slug,
+  categoryName,
 }: {
   title: string;
   alt: string;
@@ -19,47 +21,48 @@ function PostPreview({
   excerpt: string;
   author: any;
   slug: string;
+  categoryName: string;
 }) {
   return (
-    <div>
+    <div className="px-5">
       <div className="mb-5">
         <CoverImage
           alt={`Cover Image for ${title}`}
           title={title}
-          slug={slug}
           url={coverImage.url}
         />
       </div>
-      <h3 className="text-xl font-bold mb-3 leading-snug">
-        <Link href={`/posts/${slug}`} className="hover:underline">
-          {title}
-        </Link>
+      <h3 className="text-3xl font-black text-[22px] leading-[26px] lg:text-[26px] lg:leading-[31px] xl:text-[30px] xl:leading-[38px]">
+        <Link href={`/posts/${slug}`}>{title}</Link>
       </h3>
-      <div className="text-lg mb-4">
+      <div className="flex flex-col md:flex-row items-start md:items-center text-light-gray leading-[24px] gap-[3px] lg:gap-[22px] mt-[8px]">
         <DateComponent dateString={date} />
+        <span className="h-[18px] border-l hidden md:block"></span>
+        <Avatar name={author.name} showImage={false}/>
+        <span className="h-[18px] border-l hidden md:block"></span>
+        <CategoryComponent categoryName={categoryName} />
       </div>
-      <p className="text-lg leading-relaxed mb-4 text-gray-400">{excerpt}</p>
-      {author && <Avatar name={author.name} picture={author.picture} />}
+      <hr className="mt-[18px]" />
+      <p className="w-full max-h-[104px] xl:max-h-[78px] overflow-hidden mt-[18px] text-gray-500 font-light leading-[26px]">
+        {excerpt}
+      </p>
+      <button className="btn text-lg whitespace-nowrap text-hover-blue py-2 px-8 border rounded border-hover-blue text-md mt-[29px] mb-[50px] hover:bg-hover-blue hover:text-white">
+        <Link href={`/posts/${slug}`}>Read More</Link>
+      </button>
     </div>
   );
 }
 
 export default function MoreStories({ morePosts }: { morePosts: any[] }) {
   return (
-    <section className="px-10">
-      <h2 className="my-8 text-5xl md:text-5xl font-bold tracking-tighter leading-tight text-center">
-        More Stories
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-5">
+    <section>
+      <div>
         {[...morePosts]
           .sort(
             (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
           )
           .map((post) => (
-            <div
-              key={post.slug}
-              className="bg-white rounded-lg p-3 shadow-md overflow-hidden"
-            >
+            <div key={post.slug}>
               <PostPreview
                 key={post.slug}
                 title={post.title}
@@ -69,6 +72,7 @@ export default function MoreStories({ morePosts }: { morePosts: any[] }) {
                 author={post.author}
                 slug={post.slug}
                 excerpt={post.excerpt}
+                categoryName={post.category ? post.category.categoryName : ""}
               />
             </div>
           ))}
