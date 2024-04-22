@@ -38,9 +38,7 @@ const BlocksSubMenu: React.FC<BlocksSubMenuProps> = ({ items }) => {
       <ul className="fixed right-20 p-7 border-gray-200 md:right-36 mt-4 bg-white shadow-md z-50 space-x-10 grid grid-cols-3 gap-8 opacity-0 invisible transition-opacity duration-300 group-hover:opacity-100 group-hover:visible w-9/12 font-light min-w-[268px]">
         {groups.map((group, index) => (
           <li key={index} className="space-y-1">
-            <h3 className="font-normal text-gray-600 text-md">
-              {group.title}
-            </h3>
+            <h3 className="font-normal text-gray-600 text-md">{group.title}</h3>
             {group.items.map((link: LinkItem, subIndex: number) => (
               <Link
                 key={subIndex}

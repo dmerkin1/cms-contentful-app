@@ -1,7 +1,7 @@
 import { getLogo } from "@/lib/api";
 import ContentfulImage from "@/lib/contentful-image";
 
-const TopBar = async () => {
+const TopBar: React.FC = async () => {
   const logo = await getLogo();
   return (
     <>

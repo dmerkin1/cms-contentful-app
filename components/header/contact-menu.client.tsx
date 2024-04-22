@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const ContactMenu = () => {
+const ContactMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleResize = () => {

@@ -8,29 +8,29 @@ import "./styles.css";
 import { LinkItem } from "@/lib/types";
 import BlocksSubMenu from "@/components/header/blocks-submenu";
 
-export default async function Header() {
+export default async function Header(): Promise<JSX.Element> {
   const logo = await getLogo();
   const linkData: LinkItem[] = await getLinks();
-const labels = [
-  "Home",
-  "Contacts",
-  "Gallery",
-  "Gallery album",
-  "Maps",
-  "Call Services page",
-  "Sliders",
-  "Forms",
-  "Subscribe forms",
-  "Small features",
-  "Team page",
-  "Testimonials"
-];
+  const labels = [
+    "Home",
+    "Contacts",
+    "Gallery",
+    "Gallery album",
+    "Maps",
+    "Call Services page",
+    "Sliders",
+    "Forms",
+    "Subscribe forms",
+    "Small features",
+    "Team page",
+    "Testimonials",
+  ];
 
-const mainMenuLinks: LinkItem[] = linkData.filter(
-  (link: LinkItem) =>
-    (link.subMenuCollection && link.subMenuCollection.items.length > 0) ||
-    labels.includes(link.label)
-);
+  const mainMenuLinks: LinkItem[] = linkData.filter(
+    (link: LinkItem) =>
+      (link.subMenuCollection && link.subMenuCollection.items.length > 0) ||
+      labels.includes(link.label)
+  );
 
   const orderedLabels = [
     "Home",
@@ -140,7 +140,9 @@ const mainMenuLinks: LinkItem[] = linkData.filter(
                                 <li
                                   tabIndex={0}
                                   key={subIndex}
-                                  className={`font-light px-4 py-2 whitespace-nowrap hover:bg-gray-100 border-b-2 border-gray-50 ${link?.label === "Blocks" ? "hidden" : ""}`}
+                                  className={`font-light px-4 py-2 whitespace-nowrap hover:bg-gray-100 border-b-2 border-gray-50 ${
+                                    link?.label === "Blocks" ? "hidden" : ""
+                                  }`}
                                 >
                                   <Link
                                     href={subLink.href}

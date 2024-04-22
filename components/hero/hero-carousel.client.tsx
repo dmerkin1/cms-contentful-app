@@ -10,12 +10,12 @@ const HeroCarousel = ({ heroImage }: HeroCarouselClientProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [translateX, setTranslateX] = useState(0);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     goToNext();
-  //   }, 5000);
-  //   return () => clearInterval(interval);
-  // }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      goToNext();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     setTranslateX(-100 * currentIndex);

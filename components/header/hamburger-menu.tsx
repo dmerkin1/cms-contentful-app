@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-export default function HamburgerMenu() {
+export default function HamburgerMenu(): JSX.Element{
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {

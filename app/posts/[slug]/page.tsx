@@ -23,7 +23,6 @@ export default async function PostPage({
 }) {
   const { isEnabled } = draftMode();
   const { post, morePosts } = await getPostAndMorePosts(params.slug, isEnabled);
-  console.log("overlayEnabled", post.overlayEnabled)
   return (
     <div className="mx-auto">
       <article>
