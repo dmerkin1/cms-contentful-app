@@ -66,7 +66,7 @@ function TestimonialCarousel({
         {visibleTestimonials.map((testimonial: Testimonial, index: number) => (
           <div
             key={index}
-            className="flex flex-col items-center shadow-md m-4 p-5 rounded-lg"
+            className="flex flex-col items-center border shadow-md m-4 p-5 rounded-lg"
             style={{ width: "308.667px" }}
           >
             <div className="flex items-center">
