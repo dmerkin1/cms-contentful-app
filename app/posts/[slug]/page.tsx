@@ -1,6 +1,6 @@
 import { draftMode } from "next/headers";
 
-// import MoreStories from "@/app/more-stories";
+import MoreStories from "@/app/more-stories";
 import Avatar from "@/app/avatar";
 import CategoryComponent from "@/app/category";
 
@@ -55,7 +55,6 @@ export default async function PostPage({
               {post.title}
             </h2>
             <div className="flex flex-col md:flex-row items-start md:items-center text-light-gray leading-[24px] gap-[3px] lg:gap-[22px] mt-[8px]">
-              {/* <DateComponent dateString={date} /> */}
               <span className="h-[18px] border-l hidden md:block"></span>
               <Avatar name={author?.name} showImage={false} />
               <span className="h-[18px] border-l hidden md:block"></span>
