@@ -19,3 +19,15 @@ export default async function Page() {
     </div>
   );
 }
+
+// import Sections from '@/app/sections';
+
+// const Page = ({ sections }) => {
+//   return (
+//     <div>
+//       <Sections sections={sections} />
+//     </div>
+//   );
+// };
+
+// export default Page;

@@ -1,22 +1,20 @@
-"use client";
 
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+// import { useRouter } from 'next/router';
 
-export default function CategoryComponent({
-  params,
-  categoryName,
-  author,
-  date,
-}: {
-  params: { slug: string };
-  categoryName: string;
-  author: any;
-  date: string;
-}) {
-  const pathname = usePathname();
-  const { slug } = params;
+const CategoryPage = () => {
+  // const router = useRouter();
 
-  return <div>Loading...</div>;
-  return <Link href="/blog">Back to blog</Link>;
-}
+  // if (!router.isReady) {
+  //   return <div>Loading...</div>;
+  // }
+
+  // const { category } = router.query;
+
+  return (
+    <div>
+      Category: 
+    </div>
+  );
+};
+
+export default CategoryPage;

@@ -61,61 +61,55 @@ query pageLanding($slug: String) {
 }`;
 
 const fragments = `
-fragment HeroCarouselData on HeroCarousel {
-  __typename
-  heroImageCollection {
-    items {
-      headline
-      darkenImage
-      subText {
-        json
-      }
-      image {
-        ... on ImageWithFocalPoint {
-          image {
-            url
+  fragment HeroCarouselData on HeroCarousel {
+    __typename
+    heroImageCollection {
+      items {
+        headline
+        darkenImage
+        subText {
+          json
+        }
+        image {
+          ... on ImageWithFocalPoint {
+            image {
+              url
+            }
+            focalPoint
+            altText
           }
-          focalPoint
-          altText
         }
       }
     }
   }
-}
 
-fragment SetofCardsData on SetOfCard {
-  __typename
-  title
-  titleSize
-  cardsCollection {
-    items {
-      title
-      subText
-      customIcon {
-        url
+  fragment SetofCardsData on SetOfCard {
+    __typename
+    title
+    titleSize
+    cardsCollection {
+      items {
+        title
+        subText
+        customIcon {
+          url
+        }
       }
     }
   }
-}
 
-fragment SetofTestimonialData on SetOfTestimonials {
-  __typename
-  title
-  titleSize
-  testimonialsCollection {
-    items {
-      name
-      image {
-        url
-      }
-      location
-      testimonial {
-        json
-      }
-      product
+  fragment TestimonialData on Testimonial {
+    __typename
+    name
+    image {
+      url
     }
+    location
+    testimonial {
+      json
+    }
+    product
   }
-}
 `;
 
 async function fetchGraphQL(query: string, preview = false): Promise<any> {
@@ -146,6 +140,68 @@ async function fetchGraphQL(query: string, preview = false): Promise<any> {
     throw error;
   }
 }
+
+// export async function getAllTestimonials(): Promise<any[]> {
+//   const entries = await fetchGraphQL(
+//     `query {
+//       testimonialCollection {
+//         items {
+//           ...TestimonialData
+//         }
+//       }
+//       fragment TestimonialData on Testimonial {
+//         __typename
+//         name
+//         image {
+//           url
+//         }
+//         location
+//         testimonial {
+//           json
+//         }
+//         product
+//       }
+//     }`
+//   );
+//   return entries?.data?.testimonialCollection?.items;
+// }
+
+export async function getAllTestimonials(): Promise<any[]> {
+  const entries = await fetchGraphQL(
+    `query {
+      testimonialCollection {
+        items {
+          name 
+          image {
+            url
+          }
+          location
+          testimonial {
+            json
+          }
+          product
+        }
+      }
+    }`
+  );
+  return entries?.data?.testimonialCollection?.items;
+}
+
+// export async function getAllTestimonials(): Promise<any[]> {
+//   const entries = await fetchGraphQL(
+//     `
+//     ${fragments}
+//     query {
+//       testimonialCollection {
+//         items {
+//           ...TestimonialData
+//         }
+//       }
+//     }`
+//   );
+//   return entries?.data?.testimonialCollection?.items;
+// }
+
 
 function extractPost(fetchResponse: any): any {
   return fetchResponse?.data?.postCollection?.items?.[0];
@@ -223,27 +279,6 @@ export async function getPostAndMorePosts(
     post: extractPost(entry),
     morePosts: extractPostEntries(entries),
   };
-}
-
-export async function getAllTestimonials(): Promise<any[]> {
-  const entries = await fetchGraphQL(
-    `query {
-      testimonialCollection {
-        items {
-          name 
-          image {
-            url
-          }
-          location
-          testimonial {
-            json
-          }
-          product
-        }
-      }
-    }`
-  );
-  return entries?.data?.testimonialCollection?.items;
 }
 
 export async function getFooterText(): Promise<any> {
