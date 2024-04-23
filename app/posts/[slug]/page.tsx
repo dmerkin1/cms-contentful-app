@@ -2,7 +2,7 @@ import { draftMode } from "next/headers";
 
 import MoreStories from "@/app/more-stories";
 import Avatar from "@/app/avatar";
-import CategoryComponent from "@/app/category";
+import Category from "@/app/category";
 
 import { Markdown } from "@/lib/markdown";
 import { getAllPosts, getPostAndMorePosts } from "@/lib/api";
@@ -11,7 +11,6 @@ import Sidebar from "@/app/sidebar";
 
 export async function getStaticPaths() {
   const allPosts = await getAllPosts(false);
-
   return {
     paths: allPosts.map((post) => ({
       params: { slug: post.slug },
@@ -31,6 +30,7 @@ export default async function PostPage({
   date: string;
   morePosts: any[];
 }) {
+  console.log("Slug: ", params.slug)
   const { isEnabled } = draftMode();
   const { post, morePosts } = await getPostAndMorePosts(params.slug, isEnabled);
   return (
@@ -62,7 +62,7 @@ export default async function PostPage({
               <span className="h-[18px] border-l hidden md:block"></span>
               <Avatar name={author?.name} showImage={false} />
               <span className="h-[18px] border-l hidden md:block"></span>
-              <CategoryComponent categoryName={categoryName} />
+              <Category categoryName={categoryName} />
             </div>
             <Markdown content={post.content} />
           </div>

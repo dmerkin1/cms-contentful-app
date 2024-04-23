@@ -3,7 +3,7 @@ import { getAllPosts, getPreviewPostBySlug, getPostAndMorePosts } from "@/lib/ap
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
   const slug = Array.isArray(params?.slug)
-    ? params.slug.join("/")
+    ? params?.slug?.join("/")
     : params?.slug ?? "";
   const post = await getPreviewPostBySlug(slug);
   const allPosts = await getAllPosts(false);
@@ -23,7 +23,7 @@ export async function getStaticPaths() {
   const allPosts = await getAllPosts(false);
   const paths = allPosts.map((post: any) => ({
     params: {
-      slug: post.slug.split("/"),
+      slug: post?.slug?.split("/"),
     },
   }));
 

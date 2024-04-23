@@ -31,7 +31,14 @@ const Sections = async ({ sections }: { sections: any }) => {
               image: section.image
             }]} />;
           case "SetOfCard":
-            return <Card key={index} cards={section.cardsCollection?.items}/>;
+            return (
+              <Card
+                key={index}
+                cards={section.cardsCollection?.items}
+                title={section.title}
+                titleSize={section.titleSize}
+              />
+            );
           default:
             return null;
         }

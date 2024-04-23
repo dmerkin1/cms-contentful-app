@@ -13,11 +13,8 @@ export default async function Page({
 }) {
   return (
     <>
-      <div className="mt-5">
+      <div className="pt-5">
         <Title title={title} titleSize={titleSize} />
-        <h2 className="w-full text-center my-8 text-5xl md:text-5xl font-bold tracking-tighter leading-tight m-5">
-          Our Services
-        </h2>
       </div>
       <div className="w-full flex justify-center">
         <hr
