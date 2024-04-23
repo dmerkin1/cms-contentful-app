@@ -9,11 +9,15 @@ import { getAllPosts, getPostAndMorePosts } from "@/lib/api";
 import ContentfulImage, { contentfulLoader } from "@/lib/contentful-image";
 import Sidebar from "@/app/sidebar";
 
+
 export async function generateStaticParams() {
+  
   const allPosts = await getAllPosts(false);
+  // const morePosts = await allPosts.slice(0, 3);
 
   return allPosts.map((post) => ({
     slug: post.slug,
+    
   }));
 }
 
@@ -21,11 +25,13 @@ export default async function PostPage({
   params,
   categoryName,
   author,
+  morePosts,
 }: {
   params: { slug: string };
   categoryName: string;
   author: any;
   date: string;
+  morePosts: any[];
 }) {
   const { isEnabled } = draftMode();
   const { post } = await getPostAndMorePosts(params.slug, isEnabled);

@@ -34,7 +34,7 @@ const POST_GRAPHQL_FIELDS = `
   }
 `;
 
-const landingPageQuery = `
+const landingpage = `
 query pageLanding($slug: String) {
   pageLandingCollection(where: {slug: $slug}, limit: 1) {
     items {
@@ -58,58 +58,22 @@ query pageLanding($slug: String) {
       }
     }
   }
-}`;
+}
+`;
 
-const fragments = `
-  fragment HeroCarouselData on HeroCarousel {
-    __typename
-    heroImageCollection {
-      items {
-        headline
-        darkenImage
-        subText {
-          json
-        }
-        image {
-          ... on ImageWithFocalPoint {
-            image {
-              url
-            }
-            focalPoint
-            altText
-          }
-        }
-      }
-    }
+const testimonialFragment = `
+fragment TestimonialData on Testimonial {
+  __typename
+  name
+  image {
+    url
   }
-
-  fragment SetofCardsData on SetOfCard {
-    __typename
-    title
-    titleSize
-    cardsCollection {
-      items {
-        title
-        subText
-        customIcon {
-          url
-        }
-      }
-    }
+  location
+  testimonial {
+    json
   }
-
-  fragment TestimonialData on Testimonial {
-    __typename
-    name
-    image {
-      url
-    }
-    location
-    testimonial {
-      json
-    }
-    product
-  }
+  product
+}
 `;
 
 async function fetchGraphQL(query: string, preview = false): Promise<any> {
@@ -141,31 +105,6 @@ async function fetchGraphQL(query: string, preview = false): Promise<any> {
   }
 }
 
-// export async function getAllTestimonials(): Promise<any[]> {
-//   const entries = await fetchGraphQL(
-//     `query {
-//       testimonialCollection {
-//         items {
-//           ...TestimonialData
-//         }
-//       }
-//       fragment TestimonialData on Testimonial {
-//         __typename
-//         name
-//         image {
-//           url
-//         }
-//         location
-//         testimonial {
-//           json
-//         }
-//         product
-//       }
-//     }`
-//   );
-//   return entries?.data?.testimonialCollection?.items;
-// }
-
 export async function getAllTestimonials(): Promise<any[]> {
   const entries = await fetchGraphQL(
     `query {
@@ -186,22 +125,6 @@ export async function getAllTestimonials(): Promise<any[]> {
   );
   return entries?.data?.testimonialCollection?.items;
 }
-
-// export async function getAllTestimonials(): Promise<any[]> {
-//   const entries = await fetchGraphQL(
-//     `
-//     ${fragments}
-//     query {
-//       testimonialCollection {
-//         items {
-//           ...TestimonialData
-//         }
-//       }
-//     }`
-//   );
-//   return entries?.data?.testimonialCollection?.items;
-// }
-
 
 function extractPost(fetchResponse: any): any {
   return fetchResponse?.data?.postCollection?.items?.[0];
@@ -423,4 +346,100 @@ export async function howWeWork(): Promise<any> {
   } catch (error) {
     console.error("An error occurred while fetching how we work data:", error);
   }
+}
+
+export const HeroCarouselData = `
+  fragment HeroCarouselData on HeroCarousel {
+    __typename
+    heroImageCollection {
+      items {
+        headline
+        darkenImage
+        subText {
+          json
+        }
+        image {
+          ... on ImageWithFocalPoint {
+            image {
+              url
+            }
+            focalPoint
+            altText
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const SetofCardsData = `
+  fragment SetofCardsData on SetOfCard {
+    __typename
+    title
+    titleSize
+    cardsCollection {
+      items {
+        title
+        subText
+        customIcon {
+          url
+        }
+      }
+    }
+  }
+`;
+
+export const SetofTestimonialData = `
+  fragment SetofTestimonialData on SetOfTestimonials {
+    __typename
+    title
+    titleSize
+    testimonialsCollection {
+      items {
+        name
+        image {
+          url
+        }
+        location
+        testimonial {
+          json
+        }
+        product
+      }
+    }
+  }
+`;
+
+export async function getLandingPageQuery(slug: string): Promise<any> {
+  const query = `
+    query pageLanding {
+      pageLandingCollection(where: {slug: "${slug}"}, limit: 1) {
+        items {
+          internalName
+          slug
+          __typename
+          sectionsCollection(limit: 20) {
+            ... on PageLandingSectionsCollection {
+              items {
+                ... on HeroCarousel {
+                  ...HeroCarouselData
+                }
+                ... on SetOfCard {
+                  ...SetofCardsData
+                }
+                ... on SetOfTestimonials {
+                  ...SetofTestimonialData
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    ${HeroCarouselData}
+    ${SetofCardsData}
+    ${SetofTestimonialData}
+  `;
+
+  return await fetchGraphQL(query);
 }

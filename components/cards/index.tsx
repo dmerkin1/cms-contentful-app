@@ -2,8 +2,7 @@ import { getCards } from "@/lib/api";
 import ContentfulImage from "@/lib/contentful-image";
 import { Card } from "@/lib/types";
 
-export default async function Page() {
-  const cards = await getCards();
+export default async function Page({ cards }: { cards: Card[]}) {
 
   return (
     <>

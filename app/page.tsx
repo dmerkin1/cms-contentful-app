@@ -1,33 +1,17 @@
-import HeroSection from "@/components/hero/index";
-import Card from "@/components/cards";
-import TestimonialCarousel from "@/components/testimonials";
-import { getHeroImage, getAllTestimonials } from "@/lib/api";
-import HowWeWork from "@/components/how-we-work";
+import { getLandingPageQuery } from "@/lib/api";
+import Sections from "@/app/sections";
 
 export default async function Page() {
-  const heroImage = [await getHeroImage()];
-  const testimonials = await getAllTestimonials();
+  // const heroImage = [await getHeroImage()];
+  // const testimonials = await getAllTestimonials();
+  const landingPage = await getLandingPageQuery("home");
+  console.log("landingPage:", landingPage);
+  const sections =
+    landingPage?.data?.pageLandingCollection?.items[0]?.sectionsCollection.items;
 
   return (
-    <div className="relative">
-      <HeroSection heroImage={heroImage} />
-      <div className="flex flex-wrap justify-center mt-10">
-        <Card />
-      </div>
-      <HowWeWork />
-      <TestimonialCarousel testimonials={testimonials} />
+    <div>
+      <Sections sections={sections} />
     </div>
   );
 }
-
-// import Sections from '@/app/sections';
-
-// const Page = ({ sections }) => {
-//   return (
-//     <div>
-//       <Sections sections={sections} />
-//     </div>
-//   );
-// };
-
-// export default Page;
