@@ -1,14 +1,14 @@
-import { getCards } from "@/lib/api";
 import ContentfulImage from "@/lib/contentful-image";
 import { Card } from "@/lib/types";
 
-export default async function Page({ cards }: { cards: Card[]}) {
-
+export default async function Page({ cards }: { cards: Card[] }) {
   return (
     <>
-      <h2 className="w-full text-center mb-8 text-5xl md:text-5xl font-bold tracking-tighter leading-tight m-5">
-        Our Services
-      </h2>
+      <div className="mt-5">
+        <h2 className="w-full text-center my-8 text-5xl md:text-5xl font-bold tracking-tighter leading-tight m-5">
+          Our Services
+        </h2>
+      </div>
       <div className="w-full flex justify-center">
         <hr
           className="w-[50px] lg:w-[68px] bg-primary mb-[40px] md:mb-[60px] border-hover-blue"

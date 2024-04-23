@@ -1,12 +1,13 @@
-import { howWeWork } from "@/lib/api";
 import ContentfulImage from "@/lib/contentful-image";
 import { HowWeWorkType } from "@/lib/types";
 
-export default async function HowWeWork() {
-  const howWeWorkData = await howWeWork();
-
+export default async function HowWeWork({
+  howWeWorkData,
+}: {
+  howWeWorkData: HowWeWorkType[];
+}) {
   return (
-    <div className="flex flex-wrap justify-center mb-14 bg-gray-50 py-5">
+    <div className="flex flex-wrap justify-center bg-gray-50 py-5">
       {howWeWorkData ? (
         howWeWorkData.map((work: HowWeWorkType, index: number) => (
           <div

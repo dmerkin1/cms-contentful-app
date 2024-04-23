@@ -34,48 +34,6 @@ const POST_GRAPHQL_FIELDS = `
   }
 `;
 
-const landingpage = `
-query pageLanding($slug: String) {
-  pageLandingCollection(where: {slug: $slug}, limit: 1) {
-    items {
-      internalName
-      slug
-      __typename
-      sectionsCollection(limit: 20) {
-        ... on PageLandingSectionsCollection {
-          items {
-            ... on HeroCarousel {
-              ...HeroCarouselData
-            }
-            ... on SetOfCard {
-              ...SetofCardsData
-            }
-            ... on SetOfTestimonials {
-              ...SetofTestimonialData
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`;
-
-const testimonialFragment = `
-fragment TestimonialData on Testimonial {
-  __typename
-  name
-  image {
-    url
-  }
-  location
-  testimonial {
-    json
-  }
-  product
-}
-`;
-
 async function fetchGraphQL(query: string, preview = false): Promise<any> {
   try {
     const response = await fetch(
@@ -348,6 +306,17 @@ export async function howWeWork(): Promise<any> {
   }
 }
 
+export const HowWeWorkData = `
+  fragment HowWeWorkData on HowWeWork {
+    __typename
+    title
+    text
+    image {
+      url
+    }
+  }
+`;
+
 export const HeroCarouselData = `
   fragment HeroCarouselData on HeroCarousel {
     __typename
@@ -430,6 +399,9 @@ export async function getLandingPageQuery(slug: string): Promise<any> {
                 ... on SetOfTestimonials {
                   ...SetofTestimonialData
                 }
+                ... on HowWeWork {
+                  ...HowWeWorkData
+                }
               }
             }
           }
@@ -439,6 +411,7 @@ export async function getLandingPageQuery(slug: string): Promise<any> {
     ${HeroCarouselData}
     ${SetofCardsData}
     ${SetofTestimonialData}
+    ${HowWeWorkData}
   `;
 
   return await fetchGraphQL(query);

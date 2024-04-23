@@ -9,23 +9,21 @@ import { getAllPosts, getPostAndMorePosts } from "@/lib/api";
 import ContentfulImage, { contentfulLoader } from "@/lib/contentful-image";
 import Sidebar from "@/app/sidebar";
 
-
-export async function generateStaticParams() {
-  
+export async function getStaticPaths() {
   const allPosts = await getAllPosts(false);
-  // const morePosts = await allPosts.slice(0, 3);
 
-  return allPosts.map((post) => ({
-    slug: post.slug,
-    
-  }));
+  return {
+    paths: allPosts.map((post) => ({
+      params: { slug: post.slug },
+    })),
+    fallback: false,
+  };
 }
 
 export default async function PostPage({
   params,
   categoryName,
   author,
-  morePosts,
 }: {
   params: { slug: string };
   categoryName: string;
@@ -34,7 +32,7 @@ export default async function PostPage({
   morePosts: any[];
 }) {
   const { isEnabled } = draftMode();
-  const { post } = await getPostAndMorePosts(params.slug, isEnabled);
+  const { post, morePosts } = await getPostAndMorePosts(params.slug, isEnabled);
   return (
     <div className="mx-auto">
       <article>
@@ -77,7 +75,7 @@ export default async function PostPage({
       </article>
 
       <hr className="border-accent-2 mt-28 mb-24" />
-      {/* <MoreStories morePosts={morePosts.slice(0, 3)} /> */}
+      {/* <MoreStories morePosts={morePosts} /> */}
     </div>
   );
 }
