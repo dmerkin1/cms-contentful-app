@@ -8,6 +8,8 @@ export default async function Page({
   titleSize,
 }: {
   testimonials: Testimonial[];
+  title: string;
+  titleSize: string;
 }) {
   return (
     <div className="flex flex-wrap justify-center pb-10">

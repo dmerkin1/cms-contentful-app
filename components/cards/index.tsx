@@ -1,10 +1,20 @@
 import ContentfulImage from "@/lib/contentful-image";
 import { Card } from "@/lib/types";
+import Title from "@/components/title";
 
-export default async function Page({ cards }: { cards: Card[] }) {
+export default async function Page({
+  cards,
+  title,
+  titleSize,
+}: {
+  cards: Card[];
+  title: string;
+  titleSize: string;
+}) {
   return (
     <>
       <div className="mt-5">
+        <Title title={title} titleSize={titleSize} />
         <h2 className="w-full text-center my-8 text-5xl md:text-5xl font-bold tracking-tighter leading-tight m-5">
           Our Services
         </h2>

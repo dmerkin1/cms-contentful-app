@@ -413,6 +413,5 @@ export async function getLandingPageQuery(slug: string): Promise<any> {
     ${SetofTestimonialData}
     ${HowWeWorkData}
   `;
-
   return await fetchGraphQL(query);
 }
