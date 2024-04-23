@@ -1,8 +1,7 @@
 import { draftMode } from "next/headers";
 
-import MoreStories from "@/app/more-stories";
+// import MoreStories from "@/app/more-stories";
 import Avatar from "@/app/avatar";
-import DateComponent from "@/app/date";
 import CategoryComponent from "@/app/category";
 
 import { Markdown } from "@/lib/markdown";
@@ -22,7 +21,6 @@ export default async function PostPage({
   params,
   categoryName,
   author,
-  date,
 }: {
   params: { slug: string };
   categoryName: string;
@@ -30,7 +28,7 @@ export default async function PostPage({
   date: string;
 }) {
   const { isEnabled } = draftMode();
-  const { post, morePosts } = await getPostAndMorePosts(params.slug, isEnabled);
+  const { post } = await getPostAndMorePosts(params.slug, isEnabled);
   return (
     <div className="mx-auto">
       <article>
