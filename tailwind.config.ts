@@ -10,7 +10,8 @@ export default {
   theme: {
     extend: {
       screens: {
-        tablet: "1283px"
+        tablet: "1283px",
+        xxl: "1931px"
       },
       fontFamily: {
         sans: ["var(--font-inter)"],

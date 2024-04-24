@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body>
-        <section className="min-h-screen overflow-x-hidden">
+        <section className="min-h-screen overflow-clip">
           <Header />
           <main>{children}</main>
           <Footer />

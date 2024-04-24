@@ -9,14 +9,23 @@ import { Markdown } from "@/lib/markdown";
 import { getAllPosts, getPostAndMorePosts } from "@/lib/api";
 import ContentfulImage, { contentfulLoader } from "@/lib/contentful-image";
 import { BlogPost, RelatedPostsProps } from "@/lib/types";
+import Link from "next/link";
 
 const RelatedPosts = ({ posts }: RelatedPostsProps) => {
+  
   if (!posts.length) {
-    return <p>No related stories available.</p>;
+    return (
+      <>
+        <h2 className="font-bold text-[22px] leading-[26px] md:text-[26px] md:leading-[31px] lg:text-[30px] lg:leading-[38px] mb-6 px-5">
+          Related Posts
+        </h2>
+        <p className="px-5">No related posts available.</p>
+      </>
+    );
   }
 
   return (
-    <div className="flex flex-col max-w-full my-8">
+    <div className="flex flex-col max-w-full my-8 px-5">
       <h2 className="font-bold text-[22px] leading-[26px] md:text-[26px] md:leading-[31px] lg:text-[30px] lg:leading-[38px] mb-6">
         Related Posts
       </h2>
@@ -53,9 +62,12 @@ const RelatedPosts = ({ posts }: RelatedPostsProps) => {
                   showLabel={false}
                 />
               </div>
-              <h6 className="mt-[4px] max-w-[200px] max-h-[40px] hover:text-hover-blue transition-all hover:cursor-pointer">
+              <Link
+                href={`/posts/${post.slug}`}
+                className="ml-8 mt-[4px] max-w-[200px] max-h-[40px] hover:text-hover-blue transition-all hover:cursor-pointer"
+              >
                 {post.title}
-              </h6>
+              </Link>
             </div>
           </article>
         ))}

@@ -13,7 +13,7 @@ export default async function Page({ category }: CategoryPageProps){
           post.category?.categoryName.toLowerCase() === category.toLowerCase()
       )
     : allPosts;
-
+    
   return (
     <section>
       {filteredPosts.length > 0 ? (

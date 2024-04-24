@@ -55,7 +55,7 @@ export default async function Header(): Promise<JSX.Element> {
       <TopBar />
       <header className="text-white bg-accent-1 border-accent-2 z-10 sticky top-0">
         <div className="md:bg-custom-blue bg-white" id="menuHeader">
-          <div className="flex justify-between items-center px-4 py-4 md:px-20">
+          <div className="flex justify-between items-center px-4 py-4 xl:px-20">
             <div className="flex items-center md:hidden">
               <HamburgerMenu />
               <ContentfulImage

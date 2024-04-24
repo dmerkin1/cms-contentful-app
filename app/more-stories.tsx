@@ -3,6 +3,7 @@ import Avatar from "@/app/avatar";
 import DateComponent from "@/app/date";
 import CoverImage from "@/app/cover-image";
 import CategoryComponent from "@/app/category";
+import { BlogPost } from "@/lib/types";
 
 function PostPreview({
   title,
@@ -38,7 +39,7 @@ function PostPreview({
       <div className="flex flex-col md:flex-row items-start md:items-center text-light-gray leading-[24px] gap-[3px] lg:gap-[22px] mt-[8px]">
         <DateComponent dateString={date} />
         <span className="h-[18px] border-l hidden md:block"></span>
-        <Avatar name={author.name} showImage={false}/>
+        <Avatar name={author.name} showImage={false} />
         <span className="h-[18px] border-l hidden md:block"></span>
         <CategoryComponent categoryName={categoryName} />
       </div>
@@ -46,14 +47,18 @@ function PostPreview({
       <p className="w-full max-h-[104px] xl:max-h-[78px] overflow-hidden mt-[18px] text-gray-500 font-light leading-[26px]">
         {excerpt}
       </p>
-      <button className="btn text-lg whitespace-nowrap text-hover-blue py-2 px-8 border rounded border-hover-blue text-md mt-[29px] mb-[50px] hover:bg-hover-blue hover:text-white">
-        <Link href={`/posts/${slug}`}>Read More</Link>
-      </button>
+      <div className="my-10">
+        <Link href={`/posts/${slug}`} legacyBehavior>
+          <a className="btn text-lg whitespace-nowrap text-hover-blue py-3 px-8 border rounded border-hover-blue text-md mt-[29px] mb-[50px] hover:bg-hover-blue hover:text-white">
+            Read More
+          </a>
+        </Link>
+      </div>
     </div>
   );
 }
 
-export default function MoreStories({ morePosts }: { morePosts: any[] }) {
+export default function MoreStories({ morePosts }: { morePosts: BlogPost[] }) {
   return (
     <section>
       <div>

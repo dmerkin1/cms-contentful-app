@@ -45,8 +45,8 @@ function TestimonialCarousel({
     );
 
   return (
-    <div className="flex items-center justify-center">
-      <button onClick={prev}>
+    <div className="flex items-center justify-center ">
+      <button onClick={prev} className="hidden md:inline-block">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -90,7 +90,7 @@ function TestimonialCarousel({
           </div>
         ))}
       </div>
-      <button onClick={next}>
+      <button onClick={next} className="hidden md:inline-block">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

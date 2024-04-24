@@ -109,8 +109,13 @@ export interface ImageType {
   altText?: string;
 }
 
+export interface AuthorType {
+  name: string;
+  image: ImageType;
+}
 export interface BlogPost {
   slug: string;
+  author?: AuthorType;
   title: string;
   date: string;
   excerpt: string;

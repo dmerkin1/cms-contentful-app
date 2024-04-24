@@ -48,8 +48,8 @@ const HeroCarousel = ({ heroImage }: HeroCarouselClientProps) => {
   };
 
   return (
-    <div className="relative">
-      <div className="w-full h-[416px] sm:h-[310px] md:h-[461px] xl:h-[591px] flex justify-center relative overflow-hidden">
+    <div className="relative w-full aspect-w-16 aspect-h-5">
+      <div className="w-full h-[416px] sm:h-[310px] md:h-[461px] lg:h-[591px] xxl:h-[800px] flex justify-center relative overflow-hidden ">
         <div
           className="flex transition-transform duration-700 ease-in-out"
           style={{ transform: `translateX(${translateX}%)` }}
@@ -58,19 +58,17 @@ const HeroCarousel = ({ heroImage }: HeroCarouselClientProps) => {
             <ContentfulImage
               key={index}
               priority={index === currentIndex}
-              width={1351}
-              height={1000}
+              width={1905}
+              height={596}
               src={img.image.image.url}
               alt={img.image.altText ?? "Default Image Alt"}
               className="object-cover w-full h-full"
             />
           ))}
         </div>
-
         {currentImage.darkenImage && (
           <div className="absolute inset-0 bg-white opacity-40 md:opacity-0"></div>
         )}
-
         <button
           onClick={goToPrevious}
           className="hidden md:inline-block absolute left-0 opacity-30 bg-black hover:opacity-40 transition-all duration-300 top-1/2 transform -translate-y-1/2 z-20"

@@ -7,7 +7,7 @@ export default function Sidebar({ categories }: { categories: string[] }) {
   const router = useRouter();
 
   return (
-    <aside className="px-4">
+    <aside className="px-5">
       <h4 className="font-bold text-xl mb-4">Categories</h4>
       <ul className="mt-[12px]">
         {categories.map((category: string, index: number) => (
