@@ -1,10 +1,12 @@
-import { draftMode } from "next/headers";
-import MoreStories from "../more-stories";
+import MoreStories from "@/app/more-stories";
 import { getAllPosts } from "@/lib/api";
 
-export default async function Page({ category }: { category?: string }) {
-  const { isEnabled } = draftMode();
-  const allPosts = await getAllPosts(isEnabled);
+interface CategoryPageProps {
+  category?: string;
+}
+
+export default async function Page({ category }: CategoryPageProps){
+  const allPosts = await getAllPosts();
   const filteredPosts = category
     ? allPosts.filter(
         (post) =>

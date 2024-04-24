@@ -107,7 +107,7 @@ export async function getPreviewPostBySlug(slug: string | null): Promise<any> {
 }
 
 export async function getAllPosts(
-  isDraftMode: boolean,
+  isDraftMode: boolean = false,
   page = 1,
   limit = 10
 ): Promise<any[]> {
@@ -130,34 +130,54 @@ export async function getAllPosts(
 
 export async function getPostAndMorePosts(
   slug: string,
-  preview: boolean
+  preview: boolean,
+  fetchRelatedByCategory: boolean = false // New optional parameter
 ): Promise<any> {
   const entry = await fetchGraphQL(
     `query {
       postCollection(where: { slug: "${slug}" }, preview: ${
       preview ? "true" : "false"
-    }, limit: 3) {
+    }, limit: 1) {
         items {
           ${POST_GRAPHQL_FIELDS}
+          category {
+            categoryName
+          }
         }
       }
     }`,
     preview
   );
-  const entries = await fetchGraphQL(
-    `query {
-      postCollection(where: { slug_not_in: "${slug}" }, order: date_DESC, preview: ${
+  const post = extractPost(entry);
+
+  let morePostsQuery = `query {
+    postCollection(where: { slug_not_in: "${slug}" }, order: date_DESC, preview: ${
+    preview ? "true" : "false"
+  }, limit: 10) {
+      items {
+        ${POST_GRAPHQL_FIELDS}
+      }
+    }
+  }`;
+
+  if (fetchRelatedByCategory && post.category) {
+    morePostsQuery = `query {
+      postCollection(where: { category: { categoryName: "${
+        post.category.categoryName
+      }" }, slug_not_in: "${slug}" }, order: date_DESC, preview: ${
       preview ? "true" : "false"
     }, limit: 10) {
         items {
           ${POST_GRAPHQL_FIELDS}
         }
       }
-    }`,
-    preview
-  );
+    }`;
+  }
+
+  const entries = await fetchGraphQL(morePostsQuery, preview);
+
   return {
-    post: extractPost(entry),
+    post: post,
     morePosts: extractPostEntries(entries),
   };
 }

@@ -85,3 +85,47 @@ export interface BlocksSubMenuProps {
 export interface CategoryProps {
   categoryName: string;
 }
+export interface Asset {
+  sys: {
+    id: string;
+  };
+  url: string;
+  description: string;
+}
+
+export interface AssetLink {
+  block: Asset[];
+}
+
+export interface Content {
+  json: any;
+  links: {
+    assets: AssetLink;
+  };
+}
+
+export interface ImageType {
+  url: string;
+  altText?: string;
+}
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  coverImage: ImageType;
+  overlayEnabled: boolean;
+  category: CategoryProps;
+  content: Content;
+}
+
+export interface RelatedPostsProps {
+  posts: BlogPost[];
+}
+
+export interface DateComponentProps {
+  dateString: string;
+  formatString?: string;
+  showLabel?: boolean;  
+}
