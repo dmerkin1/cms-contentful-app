@@ -1,9 +1,6 @@
 import MoreStories from "@/app/more-stories";
 import { getAllPosts } from "@/lib/api";
-
-interface CategoryPageProps {
-  category?: string;
-}
+import { CategoryPageProps } from "@/lib/types";
 
 export default async function Page({ category }: CategoryPageProps){
   const allPosts = await getAllPosts();

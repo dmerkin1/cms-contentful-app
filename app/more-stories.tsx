@@ -34,7 +34,7 @@ function PostPreview({
         />
       </div>
       <h3 className="text-3xl font-black text-[22px] leading-[26px] lg:text-[26px] lg:leading-[31px] xl:text-[30px] xl:leading-[38px]">
-        <Link href={`/posts/${slug}`}>{title}</Link>
+        <Link href={`/post/${slug}`}>{title}</Link>
       </h3>
       <div className="flex flex-col md:flex-row items-start md:items-center text-light-gray leading-[24px] gap-[3px] lg:gap-[22px] mt-[8px]">
         <DateComponent dateString={date} />
@@ -48,7 +48,7 @@ function PostPreview({
         {excerpt}
       </p>
       <div className="my-10">
-        <Link href={`/posts/${slug}`} legacyBehavior>
+        <Link href={`/post/${slug}`} legacyBehavior>
           <a className="btn text-lg whitespace-nowrap text-hover-blue py-3 px-8 border rounded border-hover-blue text-md mt-[29px] mb-[50px] hover:bg-hover-blue hover:text-white">
             Read More
           </a>

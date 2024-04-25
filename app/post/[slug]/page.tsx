@@ -63,7 +63,7 @@ const RelatedPosts = ({ posts }: RelatedPostsProps) => {
                 />
               </div>
               <Link
-                href={`/posts/${post.slug}`}
+                href={`/post/${post.slug}`}
                 className="ml-8 mt-[4px] max-w-[200px] max-h-[40px] hover:text-hover-blue transition-all hover:cursor-pointer"
               >
                 {post.title}

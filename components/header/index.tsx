@@ -1,3 +1,5 @@
+
+
 import TopBar from "@/components/header/top-bar";
 import Link from "next/link";
 import { getLinks, getLogo } from "@/lib/api";
@@ -133,7 +135,7 @@ export default async function Header(): Promise<JSX.Element> {
                         )}
                       {link?.subMenuCollection &&
                         link.subMenuCollection.items.length > 0 && (
-                          <ul className="absolute pt-4 left-0 w-full bg-white md:border-b-1 border-gray-400 z-0 min-w-[268px] opacity-0 invisible transition-opacity duration-300 group-hover:opacity-100 group-hover:visible">
+                          <ul className="absolute pt-4 left-0 w-full bg-white md:border-b-1 border-gray-400 z-0 min-w-[268px] opacity-0 invisible transition-opacity duration-300 md:group-hover:opacity-100 md:group-hover:visible">
                             <div className="md:bg-custom-blue h-4 w-full absolute top-0 left-0"></div>
                             {link.subMenuCollection.items.map(
                               (subLink: LinkItem, subIndex: number) => (

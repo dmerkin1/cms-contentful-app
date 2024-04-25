@@ -49,7 +49,7 @@ const HeroCarousel = ({ heroImage }: HeroCarouselClientProps) => {
 
   return (
     <div className="relative w-full aspect-w-16 aspect-h-5">
-      <div className="w-full h-[416px] sm:h-[310px] md:h-[461px] lg:h-[591px] xxl:h-[800px] flex justify-center relative overflow-hidden ">
+      <div className="w-full h-[416px] sm:h-[310px] md:h-[461px] lg:h-[591px] xxl:h-[800px] flex justify-center relative overflow-hidden">
         <div
           className="flex transition-transform duration-700 ease-in-out"
           style={{ transform: `translateX(${translateX}%)` }}

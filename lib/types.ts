@@ -134,3 +134,7 @@ export interface DateComponentProps {
   formatString?: string;
   showLabel?: boolean;  
 }
+
+export interface CategoryPageProps {
+  category?: string;
+}
