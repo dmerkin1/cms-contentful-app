@@ -26,9 +26,8 @@ const HeroCarousel = ({ heroImage }: HeroCarouselClientProps) => {
   };
 
   const goToPrevious = () => {
-    setCurrentIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + flatHeroImages.length) % flatHeroImages.length
+    setCurrentIndex(prevIndex => 
+      prevIndex === 0 ? flatHeroImages.length - 1 : prevIndex - 1
     );
   };
 
@@ -63,6 +62,7 @@ const HeroCarousel = ({ heroImage }: HeroCarouselClientProps) => {
               src={img.image.image.url}
               alt={img.image.altText ?? "Default Image Alt"}
               className="object-cover w-full h-full"
+              style={{maxWidth: `${img.maxWidth}px`}}
             />
           ))}
         </div>
@@ -112,13 +112,13 @@ const HeroCarousel = ({ heroImage }: HeroCarouselClientProps) => {
       <div className="absolute inset-0 flex flex-col justify-center p-4 text-white md:pl-8 lg:ml-44 md:max-w-[500px] lg:max-w-fit">
         <h1
           className={`text-4xl md:text-5xl xl:text-6xl leading-[1] font-bold tracking-tighter text-center md:text-left mb-5 max-w-screen-lg ${
-            currentIndex === 1 ? "text-stone-800 max-w-sm" : "text-white"
+            currentIndex === 1 ? "text-stone-800 md:max-w-sm" : "text-white"
           }`}
         >
           {currentImage.headline}
         </h1>
         <div
-          className={`text-xl font-thin text-center md:text-left tracking-wide text-[18px] lg:text-[22px] lg:leading-[36px] mb-10 max-w-[500px] ${
+          className={`text-xl font-thin text-center md:text-left tracking-wide text-[18px] lg:text-[22px] lg:leading-[36px] mb-10 md:max-w-[500px] ${
             currentIndex === 1 ? "hidden" : ""
           }`}
         >

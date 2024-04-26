@@ -131,7 +131,7 @@ export async function getAllPosts(
 export async function getPostAndMorePosts(
   slug: string,
   preview: boolean,
-  fetchRelatedByCategory: boolean = false // New optional parameter
+  fetchRelatedByCategory: boolean = false
 ): Promise<any> {
   const entry = await fetchGraphQL(
     `query {
@@ -344,6 +344,7 @@ export const HeroCarouselData = `
       items {
         headline
         darkenImage
+        maxWidth
         subText {
           json
         }

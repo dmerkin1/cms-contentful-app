@@ -33,6 +33,7 @@ export interface HeroImage {
   };
   headline: string;
   darkenImage?: boolean;
+  maxWidth?: number;
   image: {
     altText?: string;
     image: {
